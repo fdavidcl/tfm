@@ -1,0 +1,2627 @@
+\section{Add weight decay to any
+autoencoder}\label{add-weight-decay-to-any-autoencoder}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/autoencoder_weight_decay.R}{\texttt{R/autoencoder\_weight\_decay.R}}
+
+\texttt{add\_weight\_decay.Rd}
+
+Adds a weight decay regularization to the encoding layer of a given
+autoencoder
+
+\begin{verbatim}
+add_weight_decay(learner, decay = 0.02)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+learner & The \texttt{"ruta\_autoencoder"} object\tabularnewline
+decay & Numeric value indicating the amount of decay\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+An autoencoder object which contains the weight decay
+
+\section{Apply filters}\label{apply-filters}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/filter.R}{\texttt{R/filter.R}},
+\href{https://github.com/fdavidcl/ruta/blob/master/R/generics.R}{\texttt{R/generics.R}}
+
+\texttt{apply\_filter.Rd}
+
+Apply a filter to input data, generally a noise filter in order to train
+a denoising autoencoder. Users won't generally need to use these
+functions
+
+\begin{verbatim}
+# S3 method for ruta_noise_zeros
+apply_filter(filter, data, ...)
+
+# S3 method for ruta_noise_ones
+apply_filter(filter, data, ...)
+
+# S3 method for ruta_noise_saltpepper
+apply_filter(filter, data, ...)
+
+# S3 method for ruta_noise_gaussian
+apply_filter(filter, data, ...)
+
+# S3 method for ruta_noise_cauchy
+apply_filter(filter, data, ...)
+
+apply_filter(filter, data, ...)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+filter & Filter object to be applied\tabularnewline
+data & Input data to be filtered\tabularnewline
+\ldots{} & Other parameters\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+\texttt{autoencoder\_denoising}
+
+\section{Coercion to ruta\_loss}\label{coercion-to-rutaux5floss}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/generics.R}{\texttt{R/generics.R}},
+\href{https://github.com/fdavidcl/ruta/blob/master/R/loss.R}{\texttt{R/loss.R}}
+
+\texttt{as\_loss.Rd}
+
+Generic function to coerce objects into loss objects.
+
+\begin{verbatim}
+as_loss(x)
+
+# S3 method for character
+as_loss(x)
+
+# S3 method for ruta_loss
+as_loss(x)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+x & Object to be converted into a loss\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+A \texttt{"ruta\_loss"} construct
+
+\section{Coercion to ruta\_network}\label{coercion-to-rutaux5fnetwork}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/generics.R}{\texttt{R/generics.R}},
+\href{https://github.com/fdavidcl/ruta/blob/master/R/layers.R}{\texttt{R/layers.R}},
+\href{https://github.com/fdavidcl/ruta/blob/master/R/network.R}{\texttt{R/network.R}}
+
+\texttt{as\_network.Rd}
+
+Generic function to coerce objects into networks.
+
+\begin{verbatim}
+as_network(x)
+
+# S3 method for ruta_layer
+as_network(x)
+
+# S3 method for ruta_network
+as_network(x)
+
+# S3 method for numeric
+as_network(x)
+
+# S3 method for integer
+as_network(x)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+x & Object to be converted into a network\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+A \texttt{"ruta\_network"} construct
+
+\hypertarget{examples}{\subsection{\texorpdfstring{\protect\hyperlink{examples}{}Examples}{Examples}}\label{examples}}
+
+\begin{verbatim}
+net <- as_network(c(784, 1000, 32))
+\end{verbatim}
+
+\section{Automatically compute an encoding of a data
+matrix}\label{automatically-compute-an-encoding-of-a-data-matrix}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/autoencoder.R}{\texttt{R/autoencoder.R}}
+
+\texttt{autoencode.Rd}
+
+Trains an autoencoder adapted to the data and extracts its encoding for
+the same data matrix.
+
+\begin{verbatim}
+autoencode(data, dim, type = "basic", activation = "linear", epochs = 20)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+data & Numeric matrix to be encoded\tabularnewline
+dim & Number of variables to be used in the encoding\tabularnewline
+type & Type of autoencoder to use: \texttt{"basic"}, \texttt{"sparse"},
+\texttt{"contractive"}, \texttt{"denoising"}, \texttt{"robust"} or
+\texttt{"variational"}\tabularnewline
+activation & Activation type to be used in the encoding layer. Some
+available activations are \texttt{"tanh"}, \texttt{"sigmoid"},
+\texttt{"relu"}, \texttt{"elu"} and \texttt{"selu"}\tabularnewline
+epochs & Number of times the data will traverse the autoencoder to
+update its weights\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+Matrix containing the encodings
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+\texttt{autoencoder}
+
+\hypertarget{examples}{\subsection{\texorpdfstring{\protect\hyperlink{examples}{}Examples}{Examples}}\label{examples}}
+
+\begin{verbatim}
+inputs <- as.matrix(iris[, 1:4])# Train a basic autoencoder and generate a 2-variable encoding
+encoded <- autoencode(inputs, 2)
+
+# Train a contractive autoencoder with tanh activation
+encoded <- autoencode(inputs, 2, type = "contractive", activation = "tanh")
+\end{verbatim}
+
+\section{Create an autoencoder
+learner}\label{create-an-autoencoder-learner}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/autoencoder.R}{\texttt{R/autoencoder.R}}
+
+\texttt{autoencoder.Rd}
+
+Represents a generic autoencoder network.
+
+\begin{verbatim}
+autoencoder(network, loss = "mean_squared_error")
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+network & Layer construct of class \texttt{"ruta\_network"} or
+coercible\tabularnewline
+loss & A \texttt{"ruta\_loss"} object or a character string specifying a
+loss function\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+A construct of class \texttt{"ruta\_autoencoder"}
+
+\hypertarget{references}{\subsection{\texorpdfstring{\protect\hyperlink{references}{}References}{References}}\label{references}}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://arxiv.org/abs/1801.01586}{A practical tutorial on
+  autoencoders for nonlinear feature fusion}
+\end{itemize}
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+\texttt{train.ruta\_autoencoder}
+
+Other autoencoder variants: \texttt{autoencoder\_contractive},
+\texttt{autoencoder\_denoising}, \texttt{autoencoder\_robust},
+\texttt{autoencoder\_sparse}, \texttt{autoencoder\_variational}
+
+\hypertarget{examples}{\subsection{\texorpdfstring{\protect\hyperlink{examples}{}Examples}{Examples}}\label{examples}}
+
+\begin{verbatim}
+# Basic autoencoder with a network of [input]-256-36-256-[input] and
+# no nonlinearities
+autoencoder(c(256, 36), loss = "binary_crossentropy")#> Autoencoder learner
+#> ----------------------------------------
+#> Type: basic 
+#> 
+#> Network structure:
+#>  input
+#>  dense(256 units) - linear
+#>  dense(36 units) - linear
+#>  dense(256 units) - linear
+#>  dense - linear
+#> 
+#> Loss: binary_crossentropy 
+#> ----------------------------------------
+# Customizing the activation functions in the same network
+network <-
+  input() +
+  dense(256, "relu") +
+  dense(36, "tanh") +
+  dense(256, "relu") +
+  output("sigmoid")
+
+learner <- autoencoder(
+  network,
+  loss = "binary_crossentropy"
+)
+\end{verbatim}
+
+\section{Create a contractive
+autoencoder}\label{create-a-contractive-autoencoder}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/autoencoder_contractive.R}{\texttt{R/autoencoder\_contractive.R}}
+
+\texttt{autoencoder\_contractive.Rd}
+
+A contractive autoencoder adds a penalty term to the loss function of a
+basic autoencoder which attempts to induce a contraction of data in the
+latent space.
+
+\begin{verbatim}
+autoencoder_contractive(network, loss = "mean_squared_error",
+  weight = 2e-04)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+network & Layer construct of class
+\texttt{"ruta\_network"}\tabularnewline
+loss & Character string specifying the reconstruction error part of the
+loss function\tabularnewline
+weight & Weight assigned to the contractive loss\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+A construct of class \texttt{"ruta\_autoencoder"}
+
+\hypertarget{references}{\subsection{\texorpdfstring{\protect\hyperlink{references}{}References}{References}}\label{references}}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://arxiv.org/abs/1801.01586}{A practical tutorial on
+  autoencoders for nonlinear feature fusion}
+\end{itemize}
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+Other autoencoder variants: \texttt{autoencoder\_denoising},
+\texttt{autoencoder\_robust}, \texttt{autoencoder\_sparse},
+\texttt{autoencoder\_variational}, \texttt{autoencoder}
+
+\section{Create a denoising
+autoencoder}\label{create-a-denoising-autoencoder}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/autoencoder_denoising.R}{\texttt{R/autoencoder\_denoising.R}}
+
+\texttt{autoencoder\_denoising.Rd}
+
+A denoising autoencoder trains with noisy data in order to create a
+model able to reduce noise in reconstructions from input data
+
+\begin{verbatim}
+autoencoder_denoising(network, loss = "mean_squared_error",
+  noise_type = "zeros", ...)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+\begin{minipage}[t]{0.07\columnwidth}\raggedright\strut
+network
+\strut\end{minipage} &
+\begin{minipage}[t]{0.87\columnwidth}\raggedright\strut
+Layer construct of class \texttt{"ruta\_network"}
+\strut\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.07\columnwidth}\raggedright\strut
+loss
+\strut\end{minipage} &
+\begin{minipage}[t]{0.87\columnwidth}\raggedright\strut
+Loss function to be optimized
+\strut\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.07\columnwidth}\raggedright\strut
+noise\_type
+\strut\end{minipage} &
+\begin{minipage}[t]{0.87\columnwidth}\raggedright\strut
+Type of data corruption which will be used to train the autoencoder, as
+a character string. Available types:
+\strut\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.07\columnwidth}\raggedright\strut
+\strut\end{minipage} &
+\begin{minipage}[t]{0.87\columnwidth}\raggedright\strut
+- \texttt{"zeros"} Randomly set components to zero
+(\texttt{noise\_zeros})
+\strut\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.07\columnwidth}\raggedright\strut
+\strut\end{minipage} &
+\begin{minipage}[t]{0.87\columnwidth}\raggedright\strut
+- \texttt{"ones"} Randomly set components to one (\texttt{noise\_ones})
+\strut\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.07\columnwidth}\raggedright\strut
+\strut\end{minipage} &
+\begin{minipage}[t]{0.87\columnwidth}\raggedright\strut
+- \texttt{"saltpepper"} Randomly set components to zero or one
+(\texttt{noise\_saltpepper})
+\strut\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.07\columnwidth}\raggedright\strut
+\strut\end{minipage} &
+\begin{minipage}[t]{0.87\columnwidth}\raggedright\strut
+- \texttt{"gaussian"} Randomly offset each component of an input as
+drawn from Gaussian distributions with the same variance (additive
+Gaussian noise, \texttt{noise\_gaussian})
+\strut\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.07\columnwidth}\raggedright\strut
+\strut\end{minipage} &
+\begin{minipage}[t]{0.87\columnwidth}\raggedright\strut
+- \texttt{"cauchy"} Randomly offset each component of an input as drawn
+from Cauchy distributions with the same scale (additive Cauchy noise,
+\texttt{noise\_cauchy})
+\strut\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.07\columnwidth}\raggedright\strut
+\ldots{}
+\strut\end{minipage} &
+\begin{minipage}[t]{0.87\columnwidth}\raggedright\strut
+Extra parameters to customize the noisy filter:
+\strut\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.07\columnwidth}\raggedright\strut
+\strut\end{minipage} &
+\begin{minipage}[t]{0.87\columnwidth}\raggedright\strut
+- \texttt{p} The probability that each instance in the input data which
+will be altered by random noise (for \texttt{"zeros"}, \texttt{"ones"}
+and \texttt{"saltpepper"})
+\strut\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.07\columnwidth}\raggedright\strut
+\strut\end{minipage} &
+\begin{minipage}[t]{0.87\columnwidth}\raggedright\strut
+- \texttt{var} or \texttt{sd} The variance or standard deviation of the
+Gaussian distribution from which additive noise will be drawn (for
+\texttt{"gaussian"}, only one of those parameters is necessary)
+\strut\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.07\columnwidth}\raggedright\strut
+\strut\end{minipage} &
+\begin{minipage}[t]{0.87\columnwidth}\raggedright\strut
+- \texttt{scale} For the Cauchy distribution
+\strut\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+A construct of class \texttt{"ruta\_autoencoder"}
+
+\hypertarget{references}{\subsection{\texorpdfstring{\protect\hyperlink{references}{}References}{References}}\label{references}}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://dl.acm.org/citation.cfm?id=1390294}{Extracting and
+  composing robust features with denoising autoencoders}
+\end{itemize}
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+Other autoencoder variants: \texttt{autoencoder\_contractive},
+\texttt{autoencoder\_robust}, \texttt{autoencoder\_sparse},
+\texttt{autoencoder\_variational}, \texttt{autoencoder}
+
+\section{Create a robust autoencoder}\label{create-a-robust-autoencoder}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/autoencoder_robust.R}{\texttt{R/autoencoder\_robust.R}}
+
+\texttt{autoencoder\_robust.Rd}
+
+A robust autoencoder uses a special objective function, correntropy, a
+localized similarity measure which makes it less sensitive to noise in
+data. Correntropy specifically measures the probability density that two
+events are equal, and is less affected by outliers than the mean squared
+error.
+
+\begin{verbatim}
+autoencoder_robust(network, sigma = 0.2)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+network & Layer construct of class
+\texttt{"ruta\_network"}\tabularnewline
+sigma & Sigma parameter in the kernel used for
+correntropy\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+A construct of class \texttt{"ruta\_autoencoder"}
+
+\hypertarget{references}{\subsection{\texorpdfstring{\protect\hyperlink{references}{}References}{References}}\label{references}}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://ieeexplore.ieee.org/abstract/document/6854900/}{Robust
+  feature learning by stacked autoencoder with maximum correntropy
+  criterion}
+\end{itemize}
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+Other autoencoder variants: \texttt{autoencoder\_contractive},
+\texttt{autoencoder\_denoising}, \texttt{autoencoder\_sparse},
+\texttt{autoencoder\_variational}, \texttt{autoencoder}
+
+\section{Sparse autoencoder}\label{sparse-autoencoder}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/autoencoder_sparse.R}{\texttt{R/autoencoder\_sparse.R}}
+
+\texttt{autoencoder\_sparse.Rd}
+
+Creates a representation of a sparse autoencoder.
+
+\begin{verbatim}
+autoencoder_sparse(network, loss = "mean_squared_error",
+  high_probability = 0.1, weight = 0.2)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+network & Layer construct of class
+\texttt{"ruta\_network"}\tabularnewline
+loss & Character string specifying a loss function\tabularnewline
+high\_probability & Expected probability of the high value of the
+encoding layer. Set this to a value near zero in order to minimize
+activations in that layer.\tabularnewline
+weight & The weight of the sparsity regularization\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+A construct of class \texttt{"ruta\_autoencoder"}
+
+\hypertarget{references}{\subsection{\texorpdfstring{\protect\hyperlink{references}{}References}{References}}\label{references}}
+
+\begin{itemize}
+\item
+  \href{http://papers.nips.cc/paper/3313-sparse-deep-belief-net-model-for-visual-area-v2}{Sparse
+  deep belief net model for visual area V2}
+\item
+  Andrew Ng, Sparse Autoencoder.
+  \href{https://web.stanford.edu/class/cs294a/sparseAutoencoder_2011new.pdf}{CS294A
+  Lecture Notes}
+\end{itemize}
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+\texttt{sparsity}, \texttt{make\_sparse}, \texttt{is\_sparse}
+
+Other autoencoder variants: \texttt{autoencoder\_contractive},
+\texttt{autoencoder\_denoising}, \texttt{autoencoder\_robust},
+\texttt{autoencoder\_variational}, \texttt{autoencoder}
+
+\section{Build a variational
+autoencoder}\label{build-a-variational-autoencoder}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/autoencoder_variational.R}{\texttt{R/autoencoder\_variational.R}}
+
+\texttt{autoencoder\_variational.Rd}
+
+A variational autoencoder assumes that a latent, unobserved random
+variable produces the observed data and attempts to approximate its
+distribution. This function constructs a wrapper for a variational
+autoencoder using a Gaussian distribution as the prior of the latent
+space.
+
+\begin{verbatim}
+autoencoder_variational(network, loss = "binary_crossentropy",
+  auto_transform_network = TRUE)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+network & Network architecture as a \texttt{"ruta\_network"} object (or
+coercible)\tabularnewline
+loss & Reconstruction error to be combined with KL divergence in order
+to compute the variational loss\tabularnewline
+auto\_transform\_network & Boolean: convert the encoding layer into a
+variational block if none is found?\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+A construct of class \texttt{"ruta\_autoencoder"}
+
+\hypertarget{references}{\subsection{\texorpdfstring{\protect\hyperlink{references}{}References}{References}}\label{references}}
+
+\begin{itemize}
+\item
+  \href{https://arxiv.org/abs/1312.6114}{Auto-Encoding Variational
+  Bayes}
+\item
+  \href{http://blog.fastforwardlabs.com/2016/08/22/under-the-hood-of-the-variational-autoencoder-in.html}{Under
+  the Hood of the Variational Autoencoder (in Prose and Code)}
+\item
+  \href{https://keras.rstudio.com/articles/examples/variational_autoencoder.html}{Keras
+  example: Variational autoencoder}
+\end{itemize}
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+Other autoencoder variants: \texttt{autoencoder\_contractive},
+\texttt{autoencoder\_denoising}, \texttt{autoencoder\_robust},
+\texttt{autoencoder\_sparse}, \texttt{autoencoder}
+
+\hypertarget{examples}{\subsection{\texorpdfstring{\protect\hyperlink{examples}{}Examples}{Examples}}\label{examples}}
+
+\begin{verbatim}
+network <-
+  input() +
+  dense(256, "elu") +
+  variational_block(3) +
+  dense(256, "elu") +
+  output("sigmoid")
+
+learner <- autoencoder_variational(network, loss = "binary_crossentropy")
+\end{verbatim}
+
+\section{Contractive loss}\label{contractive-loss}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/autoencoder_contractive.R}{\texttt{R/autoencoder\_contractive.R}}
+
+\texttt{contraction.Rd}
+
+This is a wrapper for a loss which induces a contraction in the latent
+space.
+
+\begin{verbatim}
+contraction(reconstruction_loss = "mean_squared_error", weight = 2e-04)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+reconstruction\_loss & Original reconstruction error to be combined with
+the contractive loss (e.g.
+\texttt{"binary\_crossentropy"})\tabularnewline
+weight & Weight assigned to the contractive loss\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+A loss object which can be converted into a Keras loss
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+\texttt{autoencoder\_contractive}
+
+Other loss functions: \texttt{correntropy}, \texttt{loss\_variational}
+
+\section{Correntropy loss}\label{correntropy-loss}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/autoencoder_robust.R}{\texttt{R/autoencoder\_robust.R}}
+
+\texttt{correntropy.Rd}
+
+A wrapper for the correntropy loss function
+
+\begin{verbatim}
+correntropy(sigma = 0.2)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+sigma & Sigma parameter in the kernel\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+A \texttt{"ruta\_loss"} object
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+\texttt{autoencoder\_robust}
+
+Other loss functions: \texttt{contraction}, \texttt{loss\_variational}
+
+\section{Retrieve decoding of encoded
+data}\label{retrieve-decoding-of-encoded-data}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/autoencoder.R}{\texttt{R/autoencoder.R}}
+
+\texttt{decode.Rd}
+
+Extracts the decodification calculated by a trained autoencoder for the
+specified data.
+
+\begin{verbatim}
+decode(learner, data)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+learner & Trained autoencoder model\tabularnewline
+data & data.frame to be decoded\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+Matrix containing the decodifications
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+\texttt{encode}, \texttt{reconstruct}
+
+\section{Create a fully-connected neural
+layer}\label{create-a-fully-connected-neural-layer}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/layers.R}{\texttt{R/layers.R}}
+
+\texttt{dense.Rd}
+
+Wrapper for a dense/fully-connected layer.
+
+\begin{verbatim}
+dense(units, activation = "linear")
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+units & Number of units\tabularnewline
+activation & Optional, string indicating activation function (linear by
+default)\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+A construct with class \texttt{"ruta\_network"}
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+Other neural layers: \texttt{dropout}, \texttt{input},
+\texttt{layer\_keras}, \texttt{output}, \texttt{variational\_block}
+
+\hypertarget{examples}{\subsection{\texorpdfstring{\protect\hyperlink{examples}{}Examples}{Examples}}\label{examples}}
+
+\begin{verbatim}
+dense(30, "tanh")#> Network structure:
+#>  dense(30 units) - tanh
+\end{verbatim}
+
+\section{Dropout layer}\label{dropout-layer}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/layers.R}{\texttt{R/layers.R}}
+
+\texttt{dropout.Rd}
+
+Randomly sets a fraction \texttt{rate} of input units to 0 at each
+update during training time, which helps prevent overfitting.
+
+\begin{verbatim}
+dropout(rate = 0.5)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+rate & The fraction of affected units\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+A construct of class \texttt{"ruta\_network"}
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+Other neural layers: \texttt{dense}, \texttt{input},
+\texttt{layer\_keras}, \texttt{output}, \texttt{variational\_block}
+
+\section{Retrieve encoding of data}\label{retrieve-encoding-of-data}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/autoencoder.R}{\texttt{R/autoencoder.R}}
+
+\texttt{encode.Rd}
+
+Extracts the encoding calculated by a trained autoencoder for the
+specified data.
+
+\begin{verbatim}
+encode(learner, data)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+learner & Trained autoencoder model\tabularnewline
+data & data.frame to be encoded\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+Matrix containing the encodings
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+\texttt{decode}, \texttt{reconstruct}
+
+\section{Get the index of the
+encoding}\label{get-the-index-of-the-encoding}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/network.R}{\texttt{R/network.R}}
+
+\texttt{encoding\_index.Rd}
+
+Calculates the index of the middle layer of an encoder-decoder network.
+
+\begin{verbatim}
+encoding_index(net)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+net & A network of class \texttt{"ruta\_network"}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+Index of the middle layer
+
+\section{Evaluation metrics}\label{evaluation-metrics}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/evaluate.R}{\texttt{R/evaluate.R}}
+
+\texttt{evaluate.Rd}
+
+Performance evaluation metrics for autoencoders
+
+\begin{verbatim}
+evaluate_mean_squared_error(learner, data)
+
+evaluate_mean_absolute_error(learner, data)
+
+evaluate_binary_crossentropy(learner, data)
+
+evaluate_binary_accuracy(learner, data)
+
+evaluate_kullback_leibler_divergence(learner, data)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+learner & A trained learner object\tabularnewline
+data & Test data for evaluation\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+A named list with the autoencoder training loss and evaluation metric
+for the given data
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+\texttt{evaluation\_metric}
+
+\hypertarget{examples}{\subsection{\texorpdfstring{\protect\hyperlink{examples}{}Examples}{Examples}}\label{examples}}
+
+\begin{verbatim}
+library(purrr)
+
+x <- as.matrix(sample(iris[, 1:4]))
+x_train <- x[1:100, ]
+x_test <- x[101:150, ]autoencoder(2) %>%
+  train(x_train) %>%
+  evaluate_mean_squared_error(x_test)#> $loss
+#> [1] 23.26905
+#> 
+#> $mean_squared_error
+#> [1] 23.26905
+#> 
+\end{verbatim}
+
+\section{Custom evaluation metrics}\label{custom-evaluation-metrics}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/evaluate.R}{\texttt{R/evaluate.R}}
+
+\texttt{evaluation\_metric.Rd}
+
+Create a different evaluation metric from a valid Keras metric
+
+\begin{verbatim}
+evaluation_metric(evaluate_f)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+evaluate\_f & Must be either a metric function defined by Keras (e.g.
+\texttt{keras::metric\_binary\_crossentropy}) or a valid function for
+Keras to create a performance metric (see
+\texttt{metric\_binary\_accuracy} for details)\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+A function which can be called with parameters \texttt{learner} and
+\texttt{data} just like the ones defined in \texttt{evaluate}.
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+\texttt{evaluate}
+
+\section{Generate samples from a generative
+model}\label{generate-samples-from-a-generative-model}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/autoencoder_variational.R}{\texttt{R/autoencoder\_variational.R}},
+\href{https://github.com/fdavidcl/ruta/blob/master/R/generics.R}{\texttt{R/generics.R}}
+
+\texttt{generate.Rd}
+
+Generate samples from a generative model
+
+\begin{verbatim}
+# S3 method for ruta_autoencoder_variational
+generate(learner, dimensions = c(1, 2),
+  from = 0.05, to = 0.95, side = 10, fixed_values = 0.5, ...)
+
+generate(learner, ...)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+learner & Trained learner object\tabularnewline
+dimensions & Indices of the dimensions over which the model will be
+sampled\tabularnewline
+from & Lower limit on the values which will be passed to the inverse CDF
+of the prior\tabularnewline
+to & Upper limit on the values which will be passed to the inverse CDF
+of the prior\tabularnewline
+side & Number of steps to take in each traversed
+dimension\tabularnewline
+fixed\_values & Value used as parameter for the inverse CDF of all
+non-traversed dimensions\tabularnewline
+\ldots{} & Unused\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+\texttt{autoencoder\_variational}
+
+\section{Create an input layer}\label{create-an-input-layer}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/layers.R}{\texttt{R/layers.R}}
+
+\texttt{input.Rd}
+
+This layer acts as a placeholder for input data. The number of units is
+not needed as it is deduced from the data during training.
+
+\begin{verbatim}
+input()
+\end{verbatim}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+A construct with class \texttt{"ruta\_network"}
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+Other neural layers: \texttt{dense}, \texttt{dropout},
+\texttt{layer\_keras}, \texttt{output}, \texttt{variational\_block}
+
+\section{Detect whether an autoencoder is
+contractive}\label{detect-whether-an-autoencoder-is-contractive}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/autoencoder_contractive.R}{\texttt{R/autoencoder\_contractive.R}}
+
+\texttt{is\_contractive.Rd}
+
+Detect whether an autoencoder is contractive
+
+\begin{verbatim}
+is_contractive(learner)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+learner & A \texttt{"ruta\_autoencoder"} object\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+Logical value indicating if a contractive loss was found
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+\texttt{contraction}, \texttt{autoencoder\_contractive},
+\texttt{make\_contractive}
+
+\section{Detect whether an autoencoder is
+denoising}\label{detect-whether-an-autoencoder-is-denoising}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/autoencoder_denoising.R}{\texttt{R/autoencoder\_denoising.R}}
+
+\texttt{is\_denoising.Rd}
+
+Detect whether an autoencoder is denoising
+
+\begin{verbatim}
+is_denoising(learner)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+learner & A \texttt{"ruta\_autoencoder"} object\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+Logical value indicating if a noise generator was found
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+\texttt{noise}, \texttt{autoencoder\_denoising},
+\texttt{make\_denoising}
+
+\section{Detect whether an autoencoder is
+robust}\label{detect-whether-an-autoencoder-is-robust}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/autoencoder_robust.R}{\texttt{R/autoencoder\_robust.R}}
+
+\texttt{is\_robust.Rd}
+
+Detect whether an autoencoder is robust
+
+\begin{verbatim}
+is_robust(learner)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+learner & A \texttt{"ruta\_autoencoder"} object\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+Logical value indicating if a correntropy loss was found
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+\texttt{correntropy}, \texttt{autoencoder\_robust},
+\texttt{make\_robust}
+
+\section{Detect whether an autoencoder is
+sparse}\label{detect-whether-an-autoencoder-is-sparse}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/autoencoder_sparse.R}{\texttt{R/autoencoder\_sparse.R}}
+
+\texttt{is\_sparse.Rd}
+
+Detect whether an autoencoder is sparse
+
+\begin{verbatim}
+is_sparse(learner)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+learner & A \texttt{"ruta\_autoencoder"} object\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+Logical value indicating if a sparsity regularization in the encoding
+layer was found
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+\texttt{sparsity}, \texttt{autoencoder\_sparse}, \texttt{make\_sparse}
+
+\section{Detect trained models}\label{detect-trained-models}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/autoencoder.R}{\texttt{R/autoencoder.R}}
+
+\texttt{is\_trained.Rd}
+
+Inspects a learner and figures out whether it has been trained
+
+\begin{verbatim}
+is_trained(learner)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+learner & Learner object\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+A boolean
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+\texttt{train}
+
+\section{Detect whether an autoencoder is
+variational}\label{detect-whether-an-autoencoder-is-variational}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/autoencoder_variational.R}{\texttt{R/autoencoder\_variational.R}}
+
+\texttt{is\_variational.Rd}
+
+Detect whether an autoencoder is variational
+
+\begin{verbatim}
+is_variational(learner)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+learner & A \texttt{"ruta\_autoencoder"} object\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+Logical value indicating if a variational loss was found
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+\texttt{autoencoder\_variational}
+
+\section{Add layers to a network/Join
+networks}\label{add-layers-to-a-networkjoin-networks}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/network.R}{\texttt{R/network.R}}
+
+\texttt{join-networks.Rd}
+
+Add layers to a network/Join networks
+
+\begin{verbatim}
+# S3 method for ruta_network
++(e1, e2)
+
+# S3 method for ruta_network
+c(...)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+e1 & First network\tabularnewline
+e2 & Second network\tabularnewline
+\ldots{} & networks or layers to be concatenated\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+Network combination
+
+\hypertarget{examples}{\subsection{\texorpdfstring{\protect\hyperlink{examples}{}Examples}{Examples}}\label{examples}}
+
+\begin{verbatim}
+network <- input() + dense(30) + output("sigmoid")
+another <- c(input(), dense(30), dense(3), dense(30), output())
+\end{verbatim}
+
+\section{Custom layer from Keras}\label{custom-layer-from-keras}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/layers.R}{\texttt{R/layers.R}}
+
+\texttt{layer\_keras.Rd}
+
+Gets any layer available in Keras with the specified parameters
+
+\begin{verbatim}
+layer_keras(name, ...)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+name & The name of the layer, e.g. \texttt{"activity\_regularization"}
+for a \texttt{keras::layer\_activity\_regularization}
+object\tabularnewline
+\ldots{} & Named parameters for the Keras layer
+constructor\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+A wrapper for the specified layer, which can be combined with other Ruta
+layers
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+Other neural layers: \texttt{dense}, \texttt{dropout}, \texttt{input},
+\texttt{output}, \texttt{variational\_block}
+
+\section{Variational loss}\label{variational-loss}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/autoencoder_variational.R}{\texttt{R/autoencoder\_variational.R}}
+
+\texttt{loss\_variational.Rd}
+
+Specifies an evaluation function adapted to the variational autoencoder.
+It combines a base reconstruction error and the Kullback-Leibler
+divergence between the learned distribution and the true latent
+posterior.
+
+\begin{verbatim}
+loss_variational(reconstruction_loss)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+reconstruction\_loss & Another loss to be used as reconstruction error
+(e.g. ``binary\_crossentropy'')\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+A \texttt{"ruta\_loss"} object
+
+\hypertarget{references}{\subsection{\texorpdfstring{\protect\hyperlink{references}{}References}{References}}\label{references}}
+
+\begin{itemize}
+\item
+  \href{https://arxiv.org/abs/1312.6114}{Auto-Encoding Variational
+  Bayes}
+\item
+  \href{http://blog.fastforwardlabs.com/2016/08/22/under-the-hood-of-the-variational-autoencoder-in.html}{Under
+  the Hood of the Variational Autoencoder (in Prose and Code)}
+\item
+  \href{https://keras.rstudio.com/articles/examples/variational_autoencoder.html}{Keras
+  example: Variational autoencoder}
+\end{itemize}
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+\texttt{autoencoder\_variational}
+
+Other loss functions: \texttt{contraction}, \texttt{correntropy}
+
+\section{Add contractive behavior to any
+autoencoder}\label{add-contractive-behavior-to-any-autoencoder}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/autoencoder_contractive.R}{\texttt{R/autoencoder\_contractive.R}}
+
+\texttt{make\_contractive.Rd}
+
+Converts an autoencoder into a contractive one by assigning a
+contractive loss to it
+
+\begin{verbatim}
+make_contractive(learner, weight = 2e-04)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+learner & The \texttt{"ruta\_autoencoder"} object\tabularnewline
+weight & Weight assigned to the contractive loss\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+An autoencoder object which contains the contractive loss
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+\texttt{autoencoder\_contractive}
+
+\section{Add denoising behavior to any
+autoencoder}\label{add-denoising-behavior-to-any-autoencoder}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/autoencoder_denoising.R}{\texttt{R/autoencoder\_denoising.R}}
+
+\texttt{make\_denoising.Rd}
+
+Converts an autoencoder into a denoising one by adding a filter for the
+input data
+
+\begin{verbatim}
+make_denoising(learner, noise_type = "zeros", ...)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+learner & The \texttt{"ruta\_autoencoder"} object\tabularnewline
+noise\_type & Type of data corruption which will be used to train the
+autoencoder, as a character string. See \texttt{autoencoder\_denoising}
+for details\tabularnewline
+\ldots{} & Extra parameters to customize the noisy filter. See
+\texttt{autoencoder\_denoising} for details\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+An autoencoder object which contains the noisy filter
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+\texttt{autoencoder\_denoising}
+
+\section{Add robust behavior to any
+autoencoder}\label{add-robust-behavior-to-any-autoencoder}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/autoencoder_robust.R}{\texttt{R/autoencoder\_robust.R}}
+
+\texttt{make\_robust.Rd}
+
+Converts an autoencoder into a robust one by assigning a correntropy
+loss to it. Notice that this will replace the previous loss function
+
+\begin{verbatim}
+make_robust(learner, sigma = 0.2)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+learner & The \texttt{"ruta\_autoencoder"} object\tabularnewline
+sigma & Sigma parameter in the kernel used for
+correntropy\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+An autoencoder object which contains the correntropy loss
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+\texttt{autoencoder\_robust}
+
+\section{Add sparsity regularization to an
+autoencoder}\label{add-sparsity-regularization-to-an-autoencoder}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/autoencoder_sparse.R}{\texttt{R/autoencoder\_sparse.R}}
+
+\texttt{make\_sparse.Rd}
+
+Add sparsity regularization to an autoencoder
+
+\begin{verbatim}
+make_sparse(learner, high_probability = 0.1, weight = 0.2)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+learner & A \texttt{"ruta\_autoencoder"} object\tabularnewline
+high\_probability & Expected probability of the high value of the
+encoding layer. Set this to a value near zero in order to minimize
+activations in that layer.\tabularnewline
+weight & The weight of the sparsity regularization\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+The same autoencoder with the sparsity regularization applied
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+\texttt{sparsity}, \texttt{autoencoder\_sparse}, \texttt{is\_sparse}
+
+\section{Create an autoencoder
+learner}\label{create-an-autoencoder-learner-1}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/autoencoder.R}{\texttt{R/autoencoder.R}}
+
+\texttt{new\_autoencoder.Rd}
+
+Internal function to create autoencoder objects. Instead, consider using
+\texttt{autoencoder}.
+
+\begin{verbatim}
+new_autoencoder(network, loss, extra_class = NULL)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+network & Layer construct of class \texttt{"ruta\_network"} or
+coercible\tabularnewline
+loss & A \texttt{"ruta\_loss"} object or a character string specifying a
+loss function\tabularnewline
+extra\_class & Vector of classes in case this autoencoder needs to
+support custom methods (for \texttt{to\_keras}, \texttt{train},
+\texttt{generate} or others)\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+A construct of class \texttt{"ruta\_autoencoder"}
+
+\section{Layer wrapper constructor}\label{layer-wrapper-constructor}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/layers.R}{\texttt{R/layers.R}}
+
+\texttt{new\_layer.Rd}
+
+Constructor function for layers. You shouldn't generally need to use
+this. Instead, consider using individual functions such as
+\texttt{dense}.
+
+\begin{verbatim}
+new_layer(cl, ...)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+cl & Character string specifying class of layer (e.g.
+\texttt{"ruta\_layer\_dense"}), which will be used to call the
+corresponding methods\tabularnewline
+\ldots{} & Other parameters (usually \texttt{units},
+\texttt{activation})\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+A construct with class \texttt{"ruta\_layer"}
+
+\hypertarget{examples}{\subsection{\texorpdfstring{\protect\hyperlink{examples}{}Examples}{Examples}}\label{examples}}
+
+\begin{verbatim}
+my_layer <- new_layer("dense", 30, "tanh")
+
+# Equivalent:
+my_layer <- dense(30, "tanh")[[1]]
+\end{verbatim}
+
+\section{Sequential network
+constructor}\label{sequential-network-constructor}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/network.R}{\texttt{R/network.R}}
+
+\texttt{new\_network.Rd}
+
+Constructor function for networks composed of several sequentially
+placed layers. You shouldn't generally need to use this. Instead,
+consider concatenating several layers with \texttt{+.ruta\_network}.
+
+\begin{verbatim}
+new_network(...)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+\ldots{} & Zero or more objects of class
+\texttt{"ruta\_layer"}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+A construct with class \texttt{"ruta\_network"}
+
+\hypertarget{examples}{\subsection{\texorpdfstring{\protect\hyperlink{examples}{}Examples}{Examples}}\label{examples}}
+
+\begin{verbatim}
+my_network <- new_network(
+  new_layer("input", 784, "linear"),
+  new_layer("dense",  32, "tanh"),
+  new_layer("dense", 784, "sigmoid")
+)
+
+# Instead, consider using
+my_network <- input() + dense(32, "tanh") + output("sigmoid")
+\end{verbatim}
+
+\section{Noise generator}\label{noise-generator}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/filter.R}{\texttt{R/filter.R}}
+
+\texttt{noise.Rd}
+
+Delegates on noise classes to generate noise of some type
+
+\begin{verbatim}
+noise(type, ...)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+type & Type of noise, as a character string\tabularnewline
+\ldots{} & Parameters for each noise class\tabularnewline
+\bottomrule
+\end{longtable}
+
+\section{Additive Cauchy noise}\label{additive-cauchy-noise}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/filter.R}{\texttt{R/filter.R}}
+
+\texttt{noise\_cauchy.Rd}
+
+A data filter which adds noise from a Cauchy distribution to instances
+
+\begin{verbatim}
+noise_cauchy(scale = 0.005)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+scale & Scale for the Cauchy distribution\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+Object which can be applied to data with \texttt{apply\_filter}
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+Other noise generators: \texttt{noise\_gaussian}, \texttt{noise\_ones},
+\texttt{noise\_saltpepper}, \texttt{noise\_zeros}
+
+\section{Additive Gaussian noise}\label{additive-gaussian-noise}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/filter.R}{\texttt{R/filter.R}}
+
+\texttt{noise\_gaussian.Rd}
+
+A data filter which adds Gaussian noise to instances
+
+\begin{verbatim}
+noise_gaussian(sd = NULL, var = NULL)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+sd & Standard deviation for the Gaussian distribution\tabularnewline
+var & Variance of the Gaussian distribution (optional, only used if
+\texttt{sd} is not provided)\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+Object which can be applied to data with \texttt{apply\_filter}
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+Other noise generators: \texttt{noise\_cauchy}, \texttt{noise\_ones},
+\texttt{noise\_saltpepper}, \texttt{noise\_zeros}
+
+\section{Filter to add ones noise}\label{filter-to-add-ones-noise}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/filter.R}{\texttt{R/filter.R}}
+
+\texttt{noise\_ones.Rd}
+
+A data filter which replaces some values with ones
+
+\begin{verbatim}
+noise_ones(p = 0.05)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+p & Probability that a feature in an instance is set to
+one\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+Object which can be applied to data with \texttt{apply\_filter}
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+Other noise generators: \texttt{noise\_cauchy},
+\texttt{noise\_gaussian}, \texttt{noise\_saltpepper},
+\texttt{noise\_zeros}
+
+\section{Filter to add salt-and-pepper
+noise}\label{filter-to-add-salt-and-pepper-noise}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/filter.R}{\texttt{R/filter.R}}
+
+\texttt{noise\_saltpepper.Rd}
+
+A data filter which replaces some values with zeros or ones
+
+\begin{verbatim}
+noise_saltpepper(p = 0.05)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+p & Probability that a feature in an instance is set to zero or
+one\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+Object which can be applied to data with \texttt{apply\_filter}
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+Other noise generators: \texttt{noise\_cauchy},
+\texttt{noise\_gaussian}, \texttt{noise\_ones}, \texttt{noise\_zeros}
+
+\section{Filter to add zero noise}\label{filter-to-add-zero-noise}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/filter.R}{\texttt{R/filter.R}}
+
+\texttt{noise\_zeros.Rd}
+
+A data filter which replaces some values with zeros
+
+\begin{verbatim}
+noise_zeros(p = 0.05)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+p & Probability that a feature in an instance is set to
+zero\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+Object which can be applied to data with \texttt{apply\_filter}
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+Other noise generators: \texttt{noise\_cauchy},
+\texttt{noise\_gaussian}, \texttt{noise\_ones},
+\texttt{noise\_saltpepper}
+
+\section{Create an output layer}\label{create-an-output-layer}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/layers.R}{\texttt{R/layers.R}}
+
+\texttt{output.Rd}
+
+This layer acts as a placeholder for the output layer in an autoencoder.
+The number of units is not needed as it is deduced from the data during
+training.
+
+\begin{verbatim}
+output(activation = "linear")
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+activation & Optional, string indicating activation function (linear by
+default)\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+A construct with class \texttt{"ruta\_network"}
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+Other neural layers: \texttt{dense}, \texttt{dropout}, \texttt{input},
+\texttt{layer\_keras}, \texttt{variational\_block}
+
+\section{Draw a neural network}\label{draw-a-neural-network}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/network_plot.R}{\texttt{R/network\_plot.R}}
+
+\texttt{plot.ruta\_network.Rd}
+
+Draw a neural network
+
+\begin{verbatim}
+# S3 method for ruta_network
+plot(x, ...)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+\begin{minipage}[t]{0.08\columnwidth}\raggedright\strut
+x
+\strut\end{minipage} &
+\begin{minipage}[t]{0.73\columnwidth}\raggedright\strut
+A \texttt{"ruta\_network"} object
+\strut\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.08\columnwidth}\raggedright\strut
+\ldots{}
+\strut\end{minipage} &
+\begin{minipage}[t]{0.73\columnwidth}\raggedright\strut
+Additional parameters for style. Available parameters:
+\strut\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.08\columnwidth}\raggedright\strut
+\strut\end{minipage} &
+\begin{minipage}[t]{0.73\columnwidth}\raggedright\strut
+- \texttt{bg}: Color for the text over layers
+\strut\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.08\columnwidth}\raggedright\strut
+\strut\end{minipage} &
+\begin{minipage}[t]{0.73\columnwidth}\raggedright\strut
+- \texttt{fg}: Color for the background of layers
+\strut\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.08\columnwidth}\raggedright\strut
+\strut\end{minipage} &
+\begin{minipage}[t]{0.73\columnwidth}\raggedright\strut
+- \texttt{log}: Use logarithmic scale
+\strut\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{examples}{\subsection{\texorpdfstring{\protect\hyperlink{examples}{}Examples}{Examples}}\label{examples}}
+
+\begin{verbatim}
+net <-
+  input() +
+  dense(1000, "relu") + dropout() +
+  dense(100, "tanh") +
+  dense(1000, "relu") + dropout() +
+  output("sigmoid")
+plot(net, log = TRUE, fg = "#30707a", bg = "#e0e6ea")
+\end{verbatim}
+
+\section{Inspect Ruta objects}\label{inspect-ruta-objects}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/autoencoder.R}{\texttt{R/autoencoder.R}},
+\href{https://github.com/fdavidcl/ruta/blob/master/R/loss.R}{\texttt{R/loss.R}},
+\href{https://github.com/fdavidcl/ruta/blob/master/R/network.R}{\texttt{R/network.R}}
+
+\texttt{print-methods.Rd}
+
+Inspect Ruta objects
+
+\begin{verbatim}
+# S3 method for ruta_autoencoder
+print(x, ...)
+
+# S3 method for ruta_loss_named
+print(x, ...)
+
+# S3 method for ruta_loss
+print(x, ...)
+
+# S3 method for ruta_network
+print(x, ...)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+x & An object\tabularnewline
+\ldots{} & Unused\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+Invisibly returns the same object passed as parameter
+
+\hypertarget{examples}{\subsection{\texorpdfstring{\protect\hyperlink{examples}{}Examples}{Examples}}\label{examples}}
+
+\begin{verbatim}
+print(autoencoder(c(256, 10), loss = correntropy()))#> Autoencoder learner
+#> ----------------------------------------
+#> Type: robust 
+#> 
+#> Network structure:
+#>  input
+#>  dense(256 units) - linear
+#>  dense(10 units) - linear
+#>  dense(256 units) - linear
+#>  dense - linear
+#> 
+#> Loss: correntropy 
+#> ----------------------------------------
+\end{verbatim}
+
+\section{Retrieve reconstructions for input
+data}\label{retrieve-reconstructions-for-input-data}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/autoencoder.R}{\texttt{R/autoencoder.R}}
+
+\texttt{reconstruct.Rd}
+
+Extracts the reconstructions calculated by a trained autoencoder for the
+specified input data after encoding and decoding. \texttt{predict} is an
+alias for \texttt{reconstruct}.
+
+\begin{verbatim}
+reconstruct(learner, data)
+
+# S3 method for ruta_autoencoder
+predict(object, ...)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+learner & Trained autoencoder model\tabularnewline
+data & data.frame to be passed through the network\tabularnewline
+object & Trained autoencoder model\tabularnewline
+\ldots{} & Rest of parameters, unused\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+Matrix containing the reconstructions
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+\texttt{encode}, \texttt{decode}
+
+\section{Sparsity regularization}\label{sparsity-regularization}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/autoencoder_sparse.R}{\texttt{R/autoencoder\_sparse.R}}
+
+\texttt{sparsity.Rd}
+
+Sparsity regularization
+
+\begin{verbatim}
+sparsity(high_probability, weight)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+high\_probability & Expected probability of the high value of the
+encoding layer. Set this to a value near zero in order to minimize
+activations in that layer.\tabularnewline
+weight & The weight of the sparsity regularization\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+A Ruta regularizer object for the sparsity, to be inserted in the
+encoding layer.
+
+\hypertarget{references}{\subsection{\texorpdfstring{\protect\hyperlink{references}{}References}{References}}\label{references}}
+
+\begin{itemize}
+\item
+  \href{http://papers.nips.cc/paper/3313-sparse-deep-belief-net-model-for-visual-area-v2}{Sparse
+  deep belief net model for visual area V2}
+\item
+  Andrew Ng, Sparse Autoencoder.
+  \href{https://web.stanford.edu/class/cs294a/sparseAutoencoder_2011new.pdf}{CS294A
+  Lecture Notes}
+\end{itemize}
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+\texttt{autoencoder\_sparse}, \texttt{make\_sparse}, \texttt{is\_sparse}
+
+\section{Access subnetworks of a
+network}\label{access-subnetworks-of-a-network}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/network.R}{\texttt{R/network.R}}
+
+\texttt{sub-.ruta\_network.Rd}
+
+Access subnetworks of a network
+
+\begin{verbatim}
+# S3 method for ruta_network
+[(net, index)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+net & A \texttt{"ruta\_network"} object\tabularnewline
+index & An integer vector of indices of layers to be
+extracted\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+A \texttt{"ruta\_network"} object containing the specified layers.
+
+\hypertarget{examples}{\subsection{\texorpdfstring{\protect\hyperlink{examples}{}Examples}{Examples}}\label{examples}}
+
+\begin{verbatim}
+(input() + dense(30))[2]#> Network structure:
+#>  dense(30 units) - linearlong <- input() + dense(1000) + dense(100) + dense(1000) + output()
+short <- long[c(1, 3, 5)]
+\end{verbatim}
+
+\section{Convert a Ruta object onto Keras objects and
+functions}\label{convert-a-ruta-object-onto-keras-objects-and-functions}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/generics.R}{\texttt{R/generics.R}}
+
+\texttt{to\_keras.Rd}
+
+Generic function which uses the Keras API to build objects out of Ruta
+wrappers
+
+\begin{verbatim}
+to_keras(x, ...)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+x & Object to be converted\tabularnewline
+\ldots{} & Remaining parameters depending on the method\tabularnewline
+\bottomrule
+\end{longtable}
+
+\section{Extract Keras models from an autoencoder
+wrapper}\label{extract-keras-models-from-an-autoencoder-wrapper}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/autoencoder.R}{\texttt{R/autoencoder.R}},
+\href{https://github.com/fdavidcl/ruta/blob/master/R/autoencoder_variational.R}{\texttt{R/autoencoder\_variational.R}}
+
+\texttt{to\_keras.ruta\_autoencoder.Rd}
+
+Extract Keras models from an autoencoder wrapper
+
+\begin{verbatim}
+# S3 method for ruta_autoencoder
+to_keras(learner, encoder_end = "encoding",
+  decoder_start = "encoding", weights_file = NULL)
+
+# S3 method for ruta_autoencoder_variational
+to_keras(learner, ...)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+learner & Object of class \texttt{"ruta\_autoencoder"}. Needs to have a
+member \texttt{input\_shape} indicating the number of attributes of the
+input data\tabularnewline
+encoder\_end & Name of the Keras layer where the encoder
+ends\tabularnewline
+decoder\_start & Name of the Keras layer where the decoder
+starts\tabularnewline
+weights\_file & The name of a hdf5 weights file in order to load from a
+trained model\tabularnewline
+\ldots{} & Additional parameters for
+\texttt{to\_keras.ruta\_autoencoder}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+A list with several Keras models:
+
+\begin{itemize}
+\item
+  \texttt{autoencoder}: model from the input layer to the output layer
+\item
+  \texttt{encoder}: model from the input layer to the encoding layer
+\item
+  \texttt{decoder}: model from the encoding layer to the output layer
+\end{itemize}
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+\texttt{autoencoder}
+
+\section{Convert Ruta layers onto Keras
+layers}\label{convert-ruta-layers-onto-keras-layers}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/layers.R}{\texttt{R/layers.R}}
+
+\texttt{to\_keras.ruta\_layer\_input.Rd}
+
+Convert Ruta layers onto Keras layers
+
+\begin{verbatim}
+# S3 method for ruta_layer_input
+to_keras(x, input_shape, ...)
+
+# S3 method for ruta_layer_dense
+to_keras(x, input_shape,
+  model = keras::keras_model_sequential(), ...)
+
+# S3 method for ruta_layer_custom
+to_keras(x, input_shape,
+  model = keras::keras_model_sequential(), ...)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+x & The layer object\tabularnewline
+input\_shape & Number of features in training data\tabularnewline
+\ldots{} & Unused\tabularnewline
+model & Keras model where the layer will be added\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+A Layer object from Keras
+
+\section{Obtain a Keras block of layers for the variational
+autoencoder}\label{obtain-a-keras-block-of-layers-for-the-variational-autoencoder}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/autoencoder_variational.R}{\texttt{R/autoencoder\_variational.R}}
+
+\texttt{to\_keras.ruta\_layer\_variational.Rd}
+
+This block contains two dense layers representing the mean and log var
+of a Gaussian distribution and a sampling layer.
+
+\begin{verbatim}
+# S3 method for ruta_layer_variational
+to_keras(x, input_shape,
+  model = keras::keras_model_sequential(), ...)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+x & The layer object\tabularnewline
+input\_shape & Number of features in training data\tabularnewline
+model & Keras model where the layers will be added\tabularnewline
+\ldots{} & Unused\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+A Layer object from Keras
+
+\hypertarget{references}{\subsection{\texorpdfstring{\protect\hyperlink{references}{}References}{References}}\label{references}}
+
+\begin{itemize}
+\item
+  \href{https://arxiv.org/abs/1312.6114}{Auto-Encoding Variational
+  Bayes}
+\item
+  \href{http://blog.fastforwardlabs.com/2016/08/22/under-the-hood-of-the-variational-autoencoder-in.html}{Under
+  the Hood of the Variational Autoencoder (in Prose and Code)}
+\item
+  \href{https://keras.rstudio.com/articles/examples/variational_autoencoder.html}{Keras
+  example: Variational autoencoder}
+\end{itemize}
+
+\section{Obtain a Keras loss}\label{obtain-a-keras-loss}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/autoencoder_contractive.R}{\texttt{R/autoencoder\_contractive.R}},
+\href{https://github.com/fdavidcl/ruta/blob/master/R/autoencoder_robust.R}{\texttt{R/autoencoder\_robust.R}},
+\href{https://github.com/fdavidcl/ruta/blob/master/R/autoencoder_variational.R}{\texttt{R/autoencoder\_variational.R}},
+and 2 more
+
+\texttt{to\_keras.ruta\_loss\_named.Rd}
+
+Builds the Keras loss function corresponding to a name
+
+\begin{verbatim}
+# S3 method for ruta_loss_contraction
+to_keras(x, learner, ...)
+
+# S3 method for ruta_loss_correntropy
+to_keras(x, ...)
+
+# S3 method for ruta_loss_variational
+to_keras(x, learner, ...)
+
+# S3 method for ruta_loss_named
+to_keras(x, ...)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+x & A \texttt{"ruta\_loss\_named"} object\tabularnewline
+learner & The learner object including the keras model which will use
+the loss function\tabularnewline
+\ldots{} & Rest of parameters, ignored\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+A function which returns the corresponding loss for given true and
+predicted values
+
+\hypertarget{references}{\subsection{\texorpdfstring{\protect\hyperlink{references}{}References}{References}}\label{references}}
+
+\begin{itemize}
+\tightlist
+\item
+  Contractive loss:
+  \href{https://wiseodd.github.io/techblog/2016/12/05/contractive-autoencoder/}{Deriving
+  Contractive Autoencoder and Implementing it in Keras}
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  Correntropy loss:
+  \href{https://ieeexplore.ieee.org/abstract/document/6854900/}{Robust
+  feature learning by stacked autoencoder with maximum correntropy
+  criterion}
+\end{itemize}
+
+\begin{itemize}
+\item
+  Variational loss:
+
+  \begin{itemize}
+  \item
+    \href{https://arxiv.org/abs/1312.6114}{Auto-Encoding Variational
+    Bayes}
+  \item
+    \href{http://blog.fastforwardlabs.com/2016/08/22/under-the-hood-of-the-variational-autoencoder-in.html}{Under
+    the Hood of the Variational Autoencoder (in Prose and Code)}
+  \item
+    \href{https://keras.rstudio.com/articles/examples/variational_autoencoder.html}{Keras
+    example: Variational autoencoder}
+  \end{itemize}
+\end{itemize}
+
+\section{Build a Keras network}\label{build-a-keras-network}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/network.R}{\texttt{R/network.R}}
+
+\texttt{to\_keras.ruta\_network.Rd}
+
+Build a Keras network
+
+\begin{verbatim}
+# S3 method for ruta_network
+to_keras(x, input_shape)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+x & A \texttt{"ruta\_network"} object\tabularnewline
+input\_shape & The length of each input vector (number of input
+attributes)\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+A list of Keras Tensor objects with an attribute \texttt{"encoding"}
+indicating the index of the encoding layer
+
+\section{Translate sparsity regularization to Keras
+regularizer}\label{translate-sparsity-regularization-to-keras-regularizer}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/autoencoder_sparse.R}{\texttt{R/autoencoder\_sparse.R}}
+
+\texttt{to\_keras.ruta\_sparsity.Rd}
+
+Translate sparsity regularization to Keras regularizer
+
+\begin{verbatim}
+# S3 method for ruta_sparsity
+to_keras(x, activation)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+x & Sparsity object\tabularnewline
+activation & Name of the activation function used in the encoding
+layer\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+Function which can be used as activity regularizer in a Keras layer
+
+\hypertarget{references}{\subsection{\texorpdfstring{\protect\hyperlink{references}{}References}{References}}\label{references}}
+
+\begin{itemize}
+\item
+  \href{http://papers.nips.cc/paper/3313-sparse-deep-belief-net-model-for-visual-area-v2}{Sparse
+  deep belief net model for visual area V2}
+\item
+  Andrew Ng, Sparse Autoencoder.
+  \href{https://web.stanford.edu/class/cs294a/sparseAutoencoder_2011new.pdf}{CS294A
+  Lecture Notes} (2011)
+\end{itemize}
+
+\section{Obtain a Keras weight decay}\label{obtain-a-keras-weight-decay}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/autoencoder_weight_decay.R}{\texttt{R/autoencoder\_weight\_decay.R}}
+
+\texttt{to\_keras.ruta\_weight\_decay.Rd}
+
+Builds the Keras regularizer corresponding to the weight decay
+
+\begin{verbatim}
+# S3 method for ruta_weight_decay
+to_keras(x, ...)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+x & A \texttt{"ruta\_weight\_decay"} object\tabularnewline
+\ldots{} & Rest of parameters, ignored\tabularnewline
+\bottomrule
+\end{longtable}
+
+\section{Train a learner object with
+data}\label{train-a-learner-object-with-data}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/autoencoder.R}{\texttt{R/autoencoder.R}},
+\href{https://github.com/fdavidcl/ruta/blob/master/R/generics.R}{\texttt{R/generics.R}}
+
+\texttt{train.ruta\_autoencoder.Rd}
+
+This function compiles the neural network described by the learner
+object and trains it with the input data.
+
+\begin{verbatim}
+# S3 method for ruta_autoencoder
+train(learner, data, validation_data = NULL,
+  metrics = NULL, epochs = 20, optimizer = keras::optimizer_rmsprop(),
+  ...)
+
+train(learner, ...)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+\begin{minipage}[t]{0.09\columnwidth}\raggedright\strut
+learner
+\strut\end{minipage} &
+\begin{minipage}[t]{0.84\columnwidth}\raggedright\strut
+A \texttt{"ruta\_autoencoder"} object
+\strut\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright\strut
+data
+\strut\end{minipage} &
+\begin{minipage}[t]{0.84\columnwidth}\raggedright\strut
+Training data: columns are attributes and rows are instances
+\strut\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright\strut
+validation\_data
+\strut\end{minipage} &
+\begin{minipage}[t]{0.84\columnwidth}\raggedright\strut
+Additional numeric data matrix which will not be used for training but
+the loss measure and any metrics will be computed against it
+\strut\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright\strut
+metrics
+\strut\end{minipage} &
+\begin{minipage}[t]{0.84\columnwidth}\raggedright\strut
+Optional list of metrics which will evaluate the model but won't be
+optimized. See \texttt{keras::compile}
+\strut\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright\strut
+epochs
+\strut\end{minipage} &
+\begin{minipage}[t]{0.84\columnwidth}\raggedright\strut
+The number of times data will pass through the network
+\strut\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright\strut
+optimizer
+\strut\end{minipage} &
+\begin{minipage}[t]{0.84\columnwidth}\raggedright\strut
+The optimizer to be used in order to train the model, can be any
+optimizer object defined by Keras (e.g.
+\texttt{keras::optimizer\_adam()})
+\strut\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright\strut
+\ldots{}
+\strut\end{minipage} &
+\begin{minipage}[t]{0.84\columnwidth}\raggedright\strut
+Additional parameters for \texttt{keras::fit}. Some useful parameters:
+\strut\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright\strut
+\strut\end{minipage} &
+\begin{minipage}[t]{0.84\columnwidth}\raggedright\strut
+- \texttt{batch\_size} The number of examples to be grouped for each
+gradient update. Use a smaller batch size for more frequent weight
+updates or a larger one for faster optimization.
+\strut\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.09\columnwidth}\raggedright\strut
+\strut\end{minipage} &
+\begin{minipage}[t]{0.84\columnwidth}\raggedright\strut
+- \texttt{shuffle} Whether to shuffle the training data before each
+epoch, defaults to \texttt{TRUE}
+\strut\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+Same autoencoder passed as parameter, with trained internal models
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+\texttt{autoencoder}
+
+\hypertarget{examples}{\subsection{\texorpdfstring{\protect\hyperlink{examples}{}Examples}{Examples}}\label{examples}}
+
+\begin{verbatim}
+# Minimal example ================================================
+iris_model <- train(autoencoder(2), as.matrix(iris[, 1:4]))
+# Simple example with MNIST ======================================
+library(keras)
+
+# Load and normalize MNIST
+mnist = dataset_mnist()
+x_train <- array_reshape(
+  mnist$train$x, c(dim(mnist$train$x)[1], 784)
+)
+x_train <- x_train / 255.0
+x_test <- array_reshape(
+  mnist$test$x, c(dim(mnist$test$x)[1], 784)
+)
+x_test <- x_test / 255.0
+
+# Autoencoder with layers: 784-256-36-256-784
+learner <- autoencoder(c(256, 36), "binary_crossentropy")
+train(
+  learner,
+  x_train,
+  epochs = 1,
+  optimizer = "rmsprop",
+  batch_size = 64,
+  validation_data = x_test,
+  metrics = list("binary_accuracy")
+)
+\end{verbatim}
+
+\section{Create a variational block of
+layers}\label{create-a-variational-block-of-layers}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/autoencoder_variational.R}{\texttt{R/autoencoder\_variational.R}}
+
+\texttt{variational\_block.Rd}
+
+This variational block consists in two dense layers which take as input
+the previous layer and a sampling layer. More specifically, these layers
+aim to represent the mean and the log variance of the learned
+distribution in a variational autoencoder.
+
+\begin{verbatim}
+variational_block(units, epsilon_std = 1, seed = NULL)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+units & Number of units\tabularnewline
+epsilon\_std & Standard deviation for the normal distribution used for
+sampling\tabularnewline
+seed & A seed for the random number generator. \textbf{Setting a seed is
+required if you want to save the model and be able to load it
+correctly}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+A construct with class \texttt{"ruta\_layer"}
+
+\hypertarget{see-also}{\subsection{\texorpdfstring{\protect\hyperlink{see-also}{}See
+also}{See also}}\label{see-also}}
+
+\texttt{autoencoder\_variational}
+
+Other neural layers: \texttt{dense}, \texttt{dropout}, \texttt{input},
+\texttt{layer\_keras}, \texttt{output}
+
+\hypertarget{examples}{\subsection{\texorpdfstring{\protect\hyperlink{examples}{}Examples}{Examples}}\label{examples}}
+
+\begin{verbatim}
+variational_block(3)#> Network structure:
+#>  variational(3 units)
+\end{verbatim}
+
+\section{Weight decay}\label{weight-decay}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/autoencoder_weight_decay.R}{\texttt{R/autoencoder\_weight\_decay.R}}
+
+\texttt{weight\_decay.Rd}
+
+A wrapper that describes a weight decay regularization of the encoding
+layer
+
+\begin{verbatim}
+weight_decay(decay = 0.02)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+decay & Numeric value indicating the amount of decay\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+A regularizer object containing the set parameters
+
+\section{Save and load Ruta models}\label{save-and-load-ruta-models}
+
+Source:
+\href{https://github.com/fdavidcl/ruta/blob/master/R/save.R}{\texttt{R/save.R}}
+
+\texttt{save\_as.Rd}
+
+Functions to save a trained or untrained Ruta learner into a file and
+load it
+
+\begin{verbatim}
+save_as(learner, file = paste0(substitute(learner), ".tar.gz"), dir,
+  compression = "gzip")
+
+load_from(file)
+\end{verbatim}
+
+\hypertarget{arguments}{\subsection{\texorpdfstring{\protect\hyperlink{arguments}{}Arguments}{Arguments}}\label{arguments}}
+
+\begin{longtable}[c]{@{}ll@{}}
+\toprule
+learner & The \texttt{"ruta\_autoencoder"} object to be
+saved\tabularnewline
+file & In \texttt{save}, filename with extension (usually
+\texttt{.tar.gz}) where the object will be saved. In \texttt{load}, path
+to the saved model\tabularnewline
+dir & Directory where to save the file. Use \texttt{"."} to save in the
+current working directory or \texttt{tempdir()} to use a temporary
+one\tabularnewline
+compression & Type of compression to be used, for R function
+\texttt{tar}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{value}{\subsection{\texorpdfstring{\protect\hyperlink{value}{}Value}{Value}}\label{value}}
+
+\texttt{save\_as} returns the filename where the model has been saved,
+\texttt{load\_from} returns the loaded model as a
+\texttt{"ruta\_autoencoder"} object
+
+\hypertarget{examples}{\subsection{\texorpdfstring{\protect\hyperlink{examples}{}Examples}{Examples}}\label{examples}}
+
+\begin{verbatim}
+library(purrr)
+
+x <- as.matrix(iris[, 1:4])# Save a trained model
+saved_file <-
+  autoencoder(2) %>%
+  train(x) %>%
+  save_as("my_model.tar.gz", dir = tempdir())
+
+# Load and use the model
+encoded <- load_from(saved_file) %>% encode(x)#> Loading weights from /tmp/RtmphVC8m6/ruta/weights.hdf5
+\end{verbatim}
