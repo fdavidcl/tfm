@@ -27,6 +27,8 @@ cleardoublepage=empty,abstractoff,BCOR=5mm,paper=a4,fontsize=12pt,main=spanish]{
 % texto, gráficos, código fuente y símbolos.
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+
+\usepackage[final]{pdfpages}
 \usepackage{fixltx2e}
 \usepackage{graphicx} % Inclusión de imágenes.
 \usepackage{grffile}  % Distintos formatos para imágenes.
@@ -114,6 +116,8 @@ manychapters,pdfspacing]{classicthesis}
 
 \chapter{Sección segunda}
 
+\includepdf[pages=-]{publicacion.pdf}
+
 \ctparttext{\color{black}\begin{center}
 Documentación y explicación del software desarrollado que incluye las técnicas descritas.
 \end{center}}
@@ -172,6 +176,7 @@ suscipit. Maecenas pulvinar massa pulvinar fermentum
 pellentesque. Morbi eleifend nec velit ut suscipit. Nam vitae
 vestibulum dui, vel mollis dolor. Integer quis nibh sapien.
 
+\input{reference/reference.tex}
 
 
 % Añade sección de referencias al final del documento.
