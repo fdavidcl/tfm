@@ -1,0 +1,184 @@
+% Plantilla para un Trabajo Fin de Grado de la Universidad de Granada,
+% adaptada para el Doble Grado en Ingeniería Informática y Matemáticas.
+%
+%  Autor: Mario Román.
+%  Licencia: GNU GPLv2.
+%
+% Esta plantilla es una adaptación al castellano de la plantilla
+% classicthesis de André Miede, que puede obtenerse en:
+%  https://ctan.org/tex-archive/macros/latex/contrib/classicthesis?lang=en
+% La plantilla original se licencia en GNU GPLv2.
+%
+% Esta plantilla usa símbolos de la Universidad de Granada sujetos a la normativa
+% de identidad visual corporativa, que puede encontrarse en:
+% http://secretariageneral.ugr.es/pages/ivc/normativa
+%
+% La compilación se realiza con las siguientes instrucciones:
+%   pdflatex --shell-escape main.tex
+%   bibtex main
+%   pdflatex --shell-escape main.tex
+%   pdflatex --shell-escape main.tex
+
+% Opciones del tipo de documento
+\documentclass[oneside,openright,titlepage,numbers=noenddot,openany,headinclude,footinclude=true,
+cleardoublepage=empty,abstractoff,BCOR=5mm,paper=a4,fontsize=12pt,main=spanish]{scrreprt}
+
+% Paquetes de latex que se cargan al inicio. Cubren la entrada de
+% texto, gráficos, código fuente y símbolos.
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx} % Inclusión de imágenes.
+\usepackage{grffile}  % Distintos formatos para imágenes.
+\usepackage{longtable} % Tablas multipágina.
+\usepackage{wrapfig} % Coloca texto alrededor de una figura.
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage[colorlinks=true]{hyperref}
+\usepackage{tikz} % Diagramas conmutativos.
+\usepackage{minted} % Código fuente.
+\usepackage[T1]{fontenc}
+\usepackage{natbib}
+
+% Plantilla classicthesis
+\usepackage[beramono,eulerchapternumbers,linedheaders,parts,a5paper,dottedtoc,
+manychapters,pdfspacing]{classicthesis}
+
+% Geometría y espaciado de párrafos.
+\setcounter{secnumdepth}{0}
+\usepackage{enumitem}
+\setitemize{noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt}
+\setlist[enumerate]{topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex}
+\usepackage[top=1in, bottom=1.5in, left=1in, right=1in]{geometry}
+\setlength\itemsep{0em}
+\setlength{\parindent}{0pt}
+\usepackage{parskip}
+
+% Profundidad de la tabla de contenidos.
+\setcounter{secnumdepth}{3}
+
+% Usa el paquete minted para mostrar trozos de código.
+% Pueden seleccionarse el lenguaje apropiado y el estilo del código.
+\usepackage{minted}
+\usemintedstyle{colorful}
+\setminted{fontsize=\small}
+\setminted[haskell]{linenos=false,fontsize=\small}
+\renewcommand{\theFancyVerbLine}{\sffamily\textcolor[rgb]{0.5,0.5,1.0}{\oldstylenums{\arabic{FancyVerbLine}}}}
+
+% Archivos de configuración.
+\input{macros}  % En macros.tex se almacenan las opciones y comandos para escribir matemáticas.
+\input{classicthesis-config} % En classicthesis-config.tex se almacenan las opciones propias de la plantilla.
+
+% Color institucional UGR
+% \definecolor{ugrColor}{HTML}{ed1c3e} % Versión clara.
+\definecolor{ugrColor}{HTML}{c6474b}  % Usado en el título.
+\definecolor{ugrColor2}{HTML}{c6474b} % Usado en las secciones.
+
+% Datos de portada
+\usepackage{titling} % Facilita los datos de la portada
+\author{Francisco David Charte Luque} 
+\date{\today}
+\title{Generación de representaciones alternativas\\de datos mediante técnicas no supervisadas\\de Deep Learning}
+
+% Portada
+\include{titlepage}
+\usepackage{wallpaper}
+\usepackage[main=spanish]{babel}
+
+
+\begin{document}
+
+\ThisULCornerWallPaper{1}{ugrA4.pdf}
+\maketitle
+\tableofcontents
+
+
+\chapter*{Resumen}
+
+\cite{turing1936a}
+
+\ctparttext{
+  \color{black}
+  \begin{center}
+    En esta parte se describen los modelos de aprendizaje estudiados
+    desde un punto de vista teórico.
+  \end{center}
+}
+\part{Teoría}
+
+\chapter{Introducción}
+
+\chapter{Sección segunda}
+
+\ctparttext{\color{black}\begin{center}
+Documentación y explicación del software desarrollado que incluye las técnicas descritas.
+\end{center}}
+
+\part{Desarrollo práctico}
+\chapter{Sección tercera}
+El siguiente código es un ejemplo de coloreado de sintaxis e inclusión
+directa de código fuente en el texto usando \texttt{minted}.
+
+\begin{minted}[frame=lines]{haskell}
+-- From the GHC.Base library.
+class  Functor f  where
+    fmap        :: (a -> b) -> f a -> f b
+
+    -- | Replace all locations in the input with the same value.
+    -- The default definition is @'fmap' . 'const'@, but this may be
+    -- overridden with a more efficient version.
+    (<$)        :: a -> f b -> f a
+    (<$)        =  fmap . const
+
+-- | A variant of '<*>' with the arguments reversed.
+(<**>) :: Applicative f => f a -> f (a -> b) -> f b
+(<**>) = liftA2 (\a f -> f a)
+-- Don't use \$ here, see the note at the top of the page
+
+-- | Lift a function to actions.
+-- This function may be used as a value for `fmap` in a `Functor` instance.
+liftA :: Applicative f => (a -> b) -> f a -> f b
+liftA f a = pure f <*> a
+-- Caution: since this may be used for `fmap`, we can't use the obvious
+-- definition of liftA = fmap.
+
+-- | Lift a ternary function to actions.
+liftA3 :: Applicative f => (a -> b -> c -> d) -> f a -> f b -> f c -> f d
+liftA3 f a b c = liftA2 f a b <*> c
+
+
+{-# INLINABLE liftA #-}
+{-# SPECIALISE liftA :: (a1->r) -> IO a1 -> IO r #-}
+{-# SPECIALISE liftA :: (a1->r) -> Maybe a1 -> Maybe r #-}
+{-# INLINABLE liftA3 #-}
+{-# SPECIALISE liftA3 :: (a1->a2->a3->r) -> IO a1 -> IO a2 -> IO a3 -> IO r #-}
+{-# SPECIALISE liftA3 :: (a1->a2->a3->r) ->
+                                Maybe a1 -> Maybe a2 -> Maybe a3 -> Maybe r #-}
+
+-- | The 'join' function is the conventional monad join operator. It
+-- is used to remove one level of monadic structure, projecting its
+-- bound argument into the outer level.
+join              :: (Monad m) => m (m a) -> m a
+join x            =  x >>= id
+\end{minted}
+
+Vivamus fringilla egestas nulla ac lobortis. Etiam viverra est risus,
+in fermentum nibh euismod quis. Vivamus suscipit arcu sed quam dictum
+suscipit. Maecenas pulvinar massa pulvinar fermentum
+pellentesque. Morbi eleifend nec velit ut suscipit. Nam vitae
+vestibulum dui, vel mollis dolor. Integer quis nibh sapien.
+
+
+
+% Añade sección de referencias al final del documento.
+% Selecciona un estilo de cita.
+\bibliographystyle{alpha}
+% En research.bib están las entradas de los artículos que citamos.
+% Podemos cambiar el nombre del archivo aquí.
+\bibliography{research}   
+
+\end{document}
