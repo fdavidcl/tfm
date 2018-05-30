@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# coding: utf-8
 
 docs = Dir["*.html"]
 
@@ -9,5 +10,7 @@ end
 open("reference.html", "w").write(content.join("\n"))
 
 system "pandoc reference.html -o reference.md"
-system "pandoc reference.md -o reference.tex"
+system "pandoc reference.md -o _reference.tex"
 system "rm -f reference.html reference.md"
+
+File.open("reference.tex", "w").write(File.read("_reference.tex").gsub('{"', "{``").gsub('"}', "''}"))

@@ -72,7 +72,8 @@ cleardoublepage=empty,abstractoff,BCOR=5mm,paper=a4,fontsize=12pt,main=spanish]{
 \usepackage{flushend}
 
 
-\newcommand{\tightlist}{\list}
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \graphicspath{{./}{inffus/}}
 
 % Plantilla classicthesis
@@ -208,11 +209,11 @@ suscipit. Maecenas pulvinar massa pulvinar fermentum
 pellentesque. Morbi eleifend nec velit ut suscipit. Nam vitae
 vestibulum dui, vel mollis dolor. Integer quis nibh sapien.
 
-\appendix
+%\appendix
 
 \section{Documentación de Ruta 1.0.2}
 
-%\input{reference/reference.tex}
+\input{reference/reference.tex}
 
 
 % Añade sección de referencias al final del documento.
