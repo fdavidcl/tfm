@@ -28,6 +28,9 @@ cleardoublepage=empty,abstractoff,BCOR=5mm,paper=a4,fontsize=12pt,main=spanish]{
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 
+\usepackage{subcaption}
+\expandafter\def\csname ver@subfig.sty\endcsname{}
+
 \usepackage[final]{pdfpages}
 \usepackage{fixltx2e}
 \usepackage{graphicx} % Inclusión de imágenes.
@@ -44,9 +47,33 @@ cleardoublepage=empty,abstractoff,BCOR=5mm,paper=a4,fontsize=12pt,main=spanish]{
 \usepackage{tikz} % Diagramas conmutativos.
 \usepackage{minted} % Código fuente.
 \usepackage[T1]{fontenc}
-\usepackage{natbib}
+%\usepackage{natbib}
+
+\usepackage{lscape,caption} 
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools, cuted}
+%\usepackage{graphicx}
+\usepackage{url}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+%\usepackage{color}
+\usepackage{booktabs}
+\usepackage{stmaryrd}
+\usepackage{epstopdf}
+\usepackage{pdflscape}
+\usepackage{stmaryrd}
+%\usepackage[table]{xcolor}
+%\usepackage{array}
+%\usepackage{tikz}
+\usepackage{caption}
+
+\usepackage{dblfloatfix}
+\usepackage{flushend}
+
 
 \newcommand{\tightlist}{\list}
+\graphicspath{{./}{inffus/}}
 
 % Plantilla classicthesis
 \usepackage[beramono,eulerchapternumbers,linedheaders,parts,a5paper,dottedtoc,
@@ -103,8 +130,6 @@ manychapters,pdfspacing]{classicthesis}
 
 \chapter*{Resumen}
 
-\cite{turing1936a}
-
 \ctparttext{
   \color{black}
   \begin{center}
@@ -116,9 +141,14 @@ manychapters,pdfspacing]{classicthesis}
 
 \chapter{Introducción}
 
-\chapter{Sección segunda}
+\chapter{A practical tutorial on autoencoders for nonlinear feature fusion: Taxonomy, models, software and guidelines}
 
-\includepdf[pages=-]{publicacion.pdf}
+
+\input{inffus/AutoencoderReview.tex}
+
+%% \chapter{Sección segunda}
+
+%% \includepdf[pages=-]{publicacion.pdf}
 
 \ctparttext{\color{black}\begin{center}
 Documentación y explicación del software desarrollado que incluye las técnicas descritas.
@@ -182,14 +212,14 @@ vestibulum dui, vel mollis dolor. Integer quis nibh sapien.
 
 \section{Documentación de Ruta 1.0.2}
 
-\input{reference/reference.tex}
+%\input{reference/reference.tex}
 
 
 % Añade sección de referencias al final del documento.
 % Selecciona un estilo de cita.
-\bibliographystyle{alpha}
+\bibliographystyle{elsarticle-num}
 % En research.bib están las entradas de los artículos que citamos.
 % Podemos cambiar el nombre del archivo aquí.
-\bibliography{research}   
+\bibliography{references}   
 
 \end{document}
