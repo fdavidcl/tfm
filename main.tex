@@ -64,13 +64,14 @@ cleardoublepage=empty,abstractoff,BCOR=5mm,paper=a4,fontsize=12pt,main=spanish]{
 \usepackage{pdflscape}
 \usepackage{stmaryrd}
 %\usepackage[table]{xcolor}
-%\usepackage{array}
+\usepackage{array}
 %\usepackage{tikz}
 \usepackage{caption}
 
 \usepackage{dblfloatfix}
 \usepackage{flushend}
 
+\setcounter{tocdepth}{1}
 
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -119,7 +120,7 @@ manychapters,pdfspacing]{classicthesis}
 % Portada
 \include{titlepage}
 \usepackage{wallpaper}
-\usepackage[main=spanish]{babel}
+%\usepackage[main=english]{babel}
 
 
 \begin{document}
@@ -128,19 +129,49 @@ manychapters,pdfspacing]{classicthesis}
 \maketitle
 \tableofcontents
 
+\clearpage
 
-\chapter*{Resumen}
+\section*{Abstract}
+
+The present work tackles the problem of generating alternative representations from a data set, by using unsupervised feature extraction methods based on deep learning. For this purpose, firstly it presents theoretical work studying neural structures which allow to learn features, called \textit{autoencoders}. This work discusses the components of basic autoencoders, provides a taxonomy of the diverse variants and then describes each variant thoroughly, including some case studies. After this, a software library developed in the context of this work is described. The tool, named Ruta, implements the main autoencoder models and is published on the CRAN repository for R. Its features are enumerated and described, including some examples of use. Lastly, the work summarizes the obtained results and outlines some future work. 
+
+\section*{Resumen}
+
+El presente trabajo aborda el problema de generación de representaciones a partir de un conjunto de datos, mediante el uso de métodos de transformación y extracción de características no supervisados basados en aprendizaje profundo. Para ello, primero se presenta un trabajo en el que se estudian las estructuras neuronales que permiten aprender características, denominadas \textit{autoencoders}. Después, se describe un software desarrollado en el contexto del trabajo que implementa dichas estructuras.
+
+Una primera parte teórica del trabajo consiste en un artículo publicado en la revista Information Fusion. Este introduce los distintos conceptos relacionados con los mecanismos para construir características a partir de los datos:
+\begin{itemize}
+\item Ingeniería de características
+\item Aprendizaje de características
+\item Aprendizaje de representaciones
+\item Selección de características
+\item Extracción de características
+\item Fusión de características
+\end{itemize}
+Además, se detallan las componentes de un autoencoder básico: la estructura neuronal, las funciones de activación, y las características de la arquitectura. La descripción sigue con una taxonomía de los diferentes modelos de autoencoder disponibles, de acuerdo a las propiedades que inducen en las codificaciones aprendidas. A continuación, se analizan los fundamentos y propiedades de las variantes principales: básico, \textit{sparse}, \textit{contractive}, \textit{denoising} y \textit{robust}, y se mencionan otros tipos de autoencoder con aplicaciones específicas, como los modelos generativos.
+
+Para proporcionar un contexto, se comparan los autoencoders con otras técnicas clásicas de aprendizaje de características, tanto lineales como no lineales, y se presentan los diversos campos de aplicación en los que se usan. Por último, se incluyen unas indicaciones para la hora de diseñar un autoencoder para una tarea concreta y se realiza un caso de uso en el que se comparan las distintas opciones y variantes.
+
+En una segunda parte, como desarrollo práctico del tema estudiado se ha elaborado un paquete software que implementa los modelos principales de autoencoder, denominado Ruta y publicado en el repositorio CRAN de librerías para el lenguaje R. La funcionalidad del paquete incluye la definición de las estructuras neuronales, la selección del tipo de autoencoder y de la función a optimizar, el entrenamiento con varios parámetros personalizables y su evaluación contra un conjunto de test. En este trabajo se describe el uso y funcionalidad de cada método disponible en el software desarrollado.
+
+En la tercera y última parte, este trabajo recoge los resultados obtenidos y presenta las vías de investigación que se plantean para una futura tesis doctoral.
 
 \ctparttext{
   \color{black}
   \begin{center}
-    En esta parte se describen los modelos de aprendizaje estudiados
-    desde un punto de vista teórico.
+    A theoretical analysis of unsupervised deep learning models which generate alternative representations of data. 
   \end{center}
 }
-\part{Teoría}
+\part{Theory}
+\label{p.theory}
 
-\chapter{Introducción}
+%\chapter{Introduction}
+
+%The increase in information generation and the need for its processing during the latest years has caused the development of diverse techniques for automatic non-trivial knowledge extraction from those data. The discipline which studies and develops these methods is known as \textit{data mining}.
+
+%A fundamental issue in data processing is its quality: the presence of noise, the amount of measured features or class overlapping are traits which can determine the performance of a learning model. In order to ensure that the data we are working on have sufficient quality, it is usual to carry out a previous \textit{preprocessing} stage during which data are analyzed and transformed: normalizations, instance and feature reduction, noise filtering, etc. are some of the alterations which can be applied to data in this phase.
+
+
 
 \chapter{A practical tutorial on autoencoders for nonlinear feature fusion: Taxonomy, models, software and guidelines}
 
@@ -152,69 +183,89 @@ manychapters,pdfspacing]{classicthesis}
 %% \includepdf[pages=-]{publicacion.pdf}
 
 \ctparttext{\color{black}\begin{center}
-Documentación y explicación del software desarrollado que incluye las técnicas descritas.
+Description and documentation of the developed software implementing the previously analyzed techniques.
 \end{center}}
 
-\part{Desarrollo práctico}
-\chapter{Sección tercera}
-El siguiente código es un ejemplo de coloreado de sintaxis e inclusión
-directa de código fuente en el texto usando \texttt{minted}.
+\part{Practical development}
+\label{p.practice}
 
-\begin{minted}[frame=lines]{haskell}
--- From the GHC.Base library.
-class  Functor f  where
-    fmap        :: (a -> b) -> f a -> f b
+\chapter{Description of the developed software}
 
-    -- | Replace all locations in the input with the same value.
-    -- The default definition is @'fmap' . 'const'@, but this may be
-    -- overridden with a more efficient version.
-    (<$)        :: a -> f b -> f a
-    (<$)        =  fmap . const
+Ruta is a software library for design and training of unsupervised neural architectures, namely autoencoders. It is based in the well known open source deep learning library Keras \cite{Keras} and its R interface. It has been developed to work with the TensorFlow \cite{Tensorflow} backend.
 
--- | A variant of '<*>' with the arguments reversed.
-(<**>) :: Applicative f => f a -> f (a -> b) -> f b
-(<**>) = liftA2 (\a f -> f a)
--- Don't use \$ here, see the note at the top of the page
+\section{Installation}
 
--- | Lift a function to actions.
--- This function may be used as a value for `fmap` in a `Functor` instance.
-liftA :: Applicative f => (a -> b) -> f a -> f b
-liftA f a = pure f <*> a
--- Caution: since this may be used for `fmap`, we can't use the obvious
--- definition of liftA = fmap.
-
--- | Lift a ternary function to actions.
-liftA3 :: Applicative f => (a -> b -> c -> d) -> f a -> f b -> f c -> f d
-liftA3 f a b c = liftA2 f a b <*> c
-
-
-{-# INLINABLE liftA #-}
-{-# SPECIALISE liftA :: (a1->r) -> IO a1 -> IO r #-}
-{-# SPECIALISE liftA :: (a1->r) -> Maybe a1 -> Maybe r #-}
-{-# INLINABLE liftA3 #-}
-{-# SPECIALISE liftA3 :: (a1->a2->a3->r) -> IO a1 -> IO a2 -> IO a3 -> IO r #-}
-{-# SPECIALISE liftA3 :: (a1->a2->a3->r) ->
-                                Maybe a1 -> Maybe a2 -> Maybe a3 -> Maybe r #-}
-
--- | The 'join' function is the conventional monad join operator. It
--- is used to remove one level of monadic structure, projecting its
--- bound argument into the outer level.
-join              :: (Monad m) => m (m a) -> m a
-join x            =  x >>= id
+In order to install the dependencies the Python interpreter will be needed as well; Tensorflow and Keras can be installed either via the Python package manager pip or possibly the distro’s package manager in the case of Linux.
+\begin{minted}[frame=lines]{sh}
+$ sudo pip install tensorflow
+$ sudo pip install keras
 \end{minted}
 
-Vivamus fringilla egestas nulla ac lobortis. Etiam viverra est risus,
-in fermentum nibh euismod quis. Vivamus suscipit arcu sed quam dictum
-suscipit. Maecenas pulvinar massa pulvinar fermentum
-pellentesque. Morbi eleifend nec velit ut suscipit. Nam vitae
-vestibulum dui, vel mollis dolor. Integer quis nibh sapien.
+Then,  Ruta can be easily obtained from the CRAN by writing the following command into an R console:
+\begin{minted}[frame=lines]{R}
+install.packages("ruta")  
+\end{minted}
 
-%\appendix
+Alternatively, the latest development version can be downloaded from GitHub:
+\begin{minted}[frame=lines]{R}
+devtools::install_github("fdavidcl/ruta")
+\end{minted}
 
-\section{Documentación de Ruta 1.0.2}
+All R dependencies will be automatically installed. These include the Keras R interface and purrr. For convenience we also recommend installing and loading either magrittr or purrr, so that the pipe operator \texttt{\%>\%} is available.
+
+\section{Usage}
+
+The easiest way to start working with Ruta is to use the \texttt{autoencode()} function. It allows for selecting a type of autoencoder and transforming the feature space of a data set onto another one with some desirable properties depending on the chosen type.
+\begin{minted}[frame=lines]{R}
+iris[, 1:4] %>% as.matrix %>% autoencode(2, type = "denoising")  
+\end{minted}
+
+Ruta provides the functionality to build diverse neural architectures (with function \texttt{autoencoder()}), train them as autoencoders (\texttt{train()}) and perform different tasks with the resulting models (\texttt{reconstruct()}), including evaluation (\texttt{evaluate\_X()}). The following is a basic example of a natural pipeline with an autoencoder:
+\begin{minted}[frame=lines]{R}
+library(ruta)
+library(purrr)
+
+# Shuffle and normalize dataset
+x <- iris[, 1:4] %>% sample %>% as.matrix %>% scale
+x_train <- x[1:100, ]
+x_test <- x[101:150, ]
+
+autoencoder(
+  input() + dense(256) + dense(36, "tanh") + dense(256) + output("sigmoid"),
+  loss = "mean_squared_error"
+) %>%
+  make_contractive(weight = 1e-4) %>%
+  train(x_train, epochs = 40) %>%
+  evaluate_mean_squared_error(x_test)
+\end{minted}
+
+For more details, other examples and the full documentation can be found on \autoref{c.ref} as well as the project web site, \url{https://ruta.software}.
+
+\chapter{User manual of Ruta 1.0.2}
+\label{c.ref}
 
 \input{reference/reference.tex}
 
+\part{Results and conclusions}
+
+\chapter{Future work}
+
+As can be seen from the theoretical work in \autoref{p.theory}, autoencoders are a tool with many applications as data preprocessing tools. Continuing with this approach, we will study the possibilities of autoencoders and other similar neural structures applied to non-standard learning problems, which can be defined as problems whose data representation does not fit the traditional pattern: instances described each by one vector with values in several input attributes and at most one output attribute. The specific non-standard learning problems tackled by our future work will be: multi-instance, multi-view, multi-label, multi-dimensional, multi-target regression and label distribution learning.
+
+An additional course of action when designing new methods for these problems will be the construction of ensembles, made up by neural architectures which will then produce different trained models. These will potentially combine into a more powerful model for the data. We will take into account the need for diverse models and the multiple options for their integration.
+
+The practical work done with package Ruta (\autoref{p.practice}) will be thoroughly extended, to provide not only training and evaluation of customizable autoencoders, but also generation of meaningful visualizations which illustrate the training process as well as learned weights and resulting encodings. We plan on grouping all this functionality in a new package called Rutavis, aimed at understanding the behavior of these methods. Further usefulness could be brought to this software suite with a web-based graphical user interface providing easy access to both models and visualizations.
+
+
+\chapter{Ending comments}
+
+The contributions from the work during the completion of this project have been twofold: a paper and a software package.
+
+First, a review paper gathering the main autoencoder models in a taxonomy has been published on a scientific journal of notable impact: Information Fusion, ranked Q1 in JCR. This paper describes autoencoder variants, compares them to traditional feature learning techniques and provides guidelines on how to use them.
+
+Secondly, a free open source piece of software, Ruta, has been developed, enabling users to quickly define, train and evaluate very diverse autoencoder models. It has been published in the main repository for the language R, the CRAN. This library paves the way for future advances in understanding and designing architectures which adapt to different problems.
+
+The present document groups and contextualizes both of these accomplishments, serving as a starting point for future research in the various scopes described in the previous chapter.
 
 % Añade sección de referencias al final del documento.
 % Selecciona un estilo de cita.
