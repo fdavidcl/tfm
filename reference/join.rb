@@ -13,4 +13,21 @@ system "pandoc reference.html -o reference.md"
 system "pandoc reference.md -o _reference.tex"
 system "rm -f reference.html reference.md"
 
-File.open("reference.tex", "w").write(File.read("_reference.tex").gsub('{"', "{``").gsub('"}', "''}").gsub("@{}ll@{}", "@{}>{\\small}p{3cm}>{\\raggedright}p{12.5cm}@{}").gsub(/(?<=.)#>/, "\n#>").gsub("begin{verbatim}", "begin{minted}[frame=none]{R}").gsub("end{verbatim}", "end{minted}"))
+subs = {
+  '{"' => "{``",
+  '"}' => "''}",
+  "@{}ll@{}" => "@{}>{\\small}p{3cm}>{\\raggedright}p{12.5cm}@{}",
+  /(?<=.)#>/ => "\n#>",
+  "begin{verbatim}" => "begin{minted}[frame=none]{R}",
+  "end{verbatim}" => "end{minted}",
+  /\\begin\{minipage\}(.*?)strut/ => "",
+  "\\strut\\end\{minipage\}" => ""
+}
+
+doc = File.read("_reference.tex")
+
+doc = subs.reduce(doc) do |acc, args|
+  acc.gsub(*args)
+end
+
+File.open("reference.tex", "w").write(doc)

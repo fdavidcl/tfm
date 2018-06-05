@@ -349,81 +349,81 @@ autoencoder_denoising(network, loss = "mean_squared_error",
 
 \begin{longtable}[c]{@{}>{\small}p{3cm}>{\raggedright}p{12.5cm}@{}}
 \toprule
-\begin{minipage}[t]{0.07\columnwidth}\raggedright\strut
+
 network
-\strut\end{minipage} &
-\begin{minipage}[t]{0.87\columnwidth}\raggedright\strut
+ &
+
 Layer construct of class \texttt{``ruta\_network''}
-\strut\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.07\columnwidth}\raggedright\strut
+\tabularnewline
+
 loss
-\strut\end{minipage} &
-\begin{minipage}[t]{0.87\columnwidth}\raggedright\strut
+ &
+
 Loss function to be optimized
-\strut\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.07\columnwidth}\raggedright\strut
+\tabularnewline
+
 noise\_type
-\strut\end{minipage} &
-\begin{minipage}[t]{0.87\columnwidth}\raggedright\strut
+ &
+
 Type of data corruption which will be used to train the autoencoder, as
 a character string. Available types:
-\strut\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.07\columnwidth}\raggedright\strut
-\strut\end{minipage} &
-\begin{minipage}[t]{0.87\columnwidth}\raggedright\strut
+\tabularnewline
+
+ &
+
 - \texttt{``zeros''} Randomly set components to zero
 (\texttt{noise\_zeros})
-\strut\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.07\columnwidth}\raggedright\strut
-\strut\end{minipage} &
-\begin{minipage}[t]{0.87\columnwidth}\raggedright\strut
+\tabularnewline
+
+ &
+
 - \texttt{``ones''} Randomly set components to one (\texttt{noise\_ones})
-\strut\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.07\columnwidth}\raggedright\strut
-\strut\end{minipage} &
-\begin{minipage}[t]{0.87\columnwidth}\raggedright\strut
+\tabularnewline
+
+ &
+
 - \texttt{``saltpepper''} Randomly set components to zero or one
 (\texttt{noise\_saltpepper})
-\strut\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.07\columnwidth}\raggedright\strut
-\strut\end{minipage} &
-\begin{minipage}[t]{0.87\columnwidth}\raggedright\strut
+\tabularnewline
+
+ &
+
 - \texttt{``gaussian''} Randomly offset each component of an input as
 drawn from Gaussian distributions with the same variance (additive
 Gaussian noise, \texttt{noise\_gaussian})
-\strut\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.07\columnwidth}\raggedright\strut
-\strut\end{minipage} &
-\begin{minipage}[t]{0.87\columnwidth}\raggedright\strut
+\tabularnewline
+
+ &
+
 - \texttt{``cauchy''} Randomly offset each component of an input as drawn
 from Cauchy distributions with the same scale (additive Cauchy noise,
 \texttt{noise\_cauchy})
-\strut\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.07\columnwidth}\raggedright\strut
+\tabularnewline
+
 \ldots{}
-\strut\end{minipage} &
-\begin{minipage}[t]{0.87\columnwidth}\raggedright\strut
+ &
+
 Extra parameters to customize the noisy filter:
-\strut\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.07\columnwidth}\raggedright\strut
-\strut\end{minipage} &
-\begin{minipage}[t]{0.87\columnwidth}\raggedright\strut
+\tabularnewline
+
+ &
+
 - \texttt{p} The probability that each instance in the input data which
 will be altered by random noise (for \texttt{``zeros''}, \texttt{``ones''}
 and \texttt{``saltpepper''})
-\strut\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.07\columnwidth}\raggedright\strut
-\strut\end{minipage} &
-\begin{minipage}[t]{0.87\columnwidth}\raggedright\strut
+\tabularnewline
+
+ &
+
 - \texttt{var} or \texttt{sd} The variance or standard deviation of the
 Gaussian distribution from which additive noise will be drawn (for
 \texttt{``gaussian''}, only one of those parameters is necessary)
-\strut\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.07\columnwidth}\raggedright\strut
-\strut\end{minipage} &
-\begin{minipage}[t]{0.87\columnwidth}\raggedright\strut
+\tabularnewline
+
+ &
+
 - \texttt{scale} For the Cauchy distribution
-\strut\end{minipage}\tabularnewline
+\tabularnewline
 \bottomrule
 \end{longtable}
 
@@ -1816,33 +1816,33 @@ plot(x, ...)
 
 \begin{longtable}[c]{@{}>{\small}p{3cm}>{\raggedright}p{12.5cm}@{}}
 \toprule
-\begin{minipage}[t]{0.08\columnwidth}\raggedright\strut
+
 x
-\strut\end{minipage} &
-\begin{minipage}[t]{0.73\columnwidth}\raggedright\strut
+ &
+
 A \texttt{``ruta\_network''} object
-\strut\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.08\columnwidth}\raggedright\strut
+\tabularnewline
+
 \ldots{}
-\strut\end{minipage} &
-\begin{minipage}[t]{0.73\columnwidth}\raggedright\strut
+ &
+
 Additional parameters for style. Available parameters:
-\strut\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.08\columnwidth}\raggedright\strut
-\strut\end{minipage} &
-\begin{minipage}[t]{0.73\columnwidth}\raggedright\strut
+\tabularnewline
+
+ &
+
 - \texttt{bg}: Color for the text over layers
-\strut\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.08\columnwidth}\raggedright\strut
-\strut\end{minipage} &
-\begin{minipage}[t]{0.73\columnwidth}\raggedright\strut
+\tabularnewline
+
+ &
+
 - \texttt{fg}: Color for the background of layers
-\strut\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.08\columnwidth}\raggedright\strut
-\strut\end{minipage} &
-\begin{minipage}[t]{0.73\columnwidth}\raggedright\strut
+\tabularnewline
+
+ &
+
 - \texttt{log}: Use logarithmic scale
-\strut\end{minipage}\tabularnewline
+\tabularnewline
 \bottomrule
 \end{longtable}
 
@@ -2398,65 +2398,65 @@ train(learner, ...)
 
 \begin{longtable}[c]{@{}>{\small}p{3cm}>{\raggedright}p{12.5cm}@{}}
 \toprule
-\begin{minipage}[t]{0.09\columnwidth}\raggedright\strut
+
 learner
-\strut\end{minipage} &
-\begin{minipage}[t]{0.84\columnwidth}\raggedright\strut
+ &
+
 A \texttt{``ruta\_autoencoder''} object
-\strut\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.09\columnwidth}\raggedright\strut
+\tabularnewline
+
 data
-\strut\end{minipage} &
-\begin{minipage}[t]{0.84\columnwidth}\raggedright\strut
+ &
+
 Training data: columns are attributes and rows are instances
-\strut\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.09\columnwidth}\raggedright\strut
+\tabularnewline
+
 validation\_data
-\strut\end{minipage} &
-\begin{minipage}[t]{0.84\columnwidth}\raggedright\strut
+ &
+
 Additional numeric data matrix which will not be used for training but
 the loss measure and any metrics will be computed against it
-\strut\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.09\columnwidth}\raggedright\strut
+\tabularnewline
+
 metrics
-\strut\end{minipage} &
-\begin{minipage}[t]{0.84\columnwidth}\raggedright\strut
+ &
+
 Optional list of metrics which will evaluate the model but won't be
 optimized. See \texttt{keras::compile}
-\strut\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.09\columnwidth}\raggedright\strut
+\tabularnewline
+
 epochs
-\strut\end{minipage} &
-\begin{minipage}[t]{0.84\columnwidth}\raggedright\strut
+ &
+
 The number of times data will pass through the network
-\strut\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.09\columnwidth}\raggedright\strut
+\tabularnewline
+
 optimizer
-\strut\end{minipage} &
-\begin{minipage}[t]{0.84\columnwidth}\raggedright\strut
+ &
+
 The optimizer to be used in order to train the model, can be any
 optimizer object defined by Keras (e.g.
 \texttt{keras::optimizer\_adam()})
-\strut\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.09\columnwidth}\raggedright\strut
+\tabularnewline
+
 \ldots{}
-\strut\end{minipage} &
-\begin{minipage}[t]{0.84\columnwidth}\raggedright\strut
+ &
+
 Additional parameters for \texttt{keras::fit}. Some useful parameters:
-\strut\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.09\columnwidth}\raggedright\strut
-\strut\end{minipage} &
-\begin{minipage}[t]{0.84\columnwidth}\raggedright\strut
+\tabularnewline
+
+ &
+
 - \texttt{batch\_size} The number of examples to be grouped for each
 gradient update. Use a smaller batch size for more frequent weight
 updates or a larger one for faster optimization.
-\strut\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.09\columnwidth}\raggedright\strut
-\strut\end{minipage} &
-\begin{minipage}[t]{0.84\columnwidth}\raggedright\strut
+\tabularnewline
+
+ &
+
 - \texttt{shuffle} Whether to shuffle the training data before each
 epoch, defaults to \texttt{TRUE}
-\strut\end{minipage}\tabularnewline
+\tabularnewline
 \bottomrule
 \end{longtable}
 
