@@ -131,15 +131,19 @@ manychapters,pdfspacing]{classicthesis}
 
 \clearpage
 
-\section*{Abstract}
+\chapter*{Abstract}
 
-The present work tackles the problem of generating alternative representations from a data set, by using unsupervised feature extraction methods based on deep learning. For this purpose, firstly it presents theoretical work studying neural structures which allow to learn features, called \textit{autoencoders}. This work discusses the components of basic autoencoders, provides a taxonomy of the diverse variants and then describes each variant thoroughly, including some case studies. After this, a software library developed in the context of this work is described. The tool, named Ruta, implements the main autoencoder models and is published on the CRAN repository for R. Its features are enumerated and described, including some examples of use. Lastly, the work summarizes the obtained results and outlines some future work. 
+The present work tackles the problem of generating alternative representations from a data set, by using unsupervised feature extraction methods based on deep learning, both theoretically and from a more practical approach.
 
-\section*{Resumen}
+For this purpose, firstly it presents theoretical work studying neural structures which allow to learn features, called \textit{autoencoders}. This work discusses the components of basic autoencoders, provides a taxonomy of the diverse variants and then describes each variant thoroughly, including some case studies. After this, a software library developed in the context of this work is described. The tool, named Ruta, implements the main autoencoder models and is published on the CRAN repository for R. Its features are enumerated and described, including some examples of use. Lastly, the work summarizes the obtained results and outlines some future work. 
+
+\paragraph{Keywords} Machine learning, Deep Learning, unsupervised learning, neural networks, feature fusion.
+
+\chapter*{Resumen}
 
 El presente trabajo aborda el problema de generación de representaciones a partir de un conjunto de datos, mediante el uso de métodos de transformación y extracción de características no supervisados basados en aprendizaje profundo. Para ello, primero se presenta un trabajo en el que se estudian las estructuras neuronales que permiten aprender características, denominadas \textit{autoencoders}. Después, se describe un software desarrollado en el contexto del trabajo que implementa dichas estructuras.
 
-Una primera parte teórica del trabajo consiste en un artículo publicado en la revista Information Fusion. Este introduce los distintos conceptos relacionados con los mecanismos para construir características a partir de los datos:
+Una primera parte teórica del trabajo consiste en un artículo publicado en la revista Information Fusion (primer cuartil en JCR). Este define los distintos conceptos relacionados con los mecanismos para construir características a partir de los datos:
 \begin{itemize}
 \item Ingeniería de características
 \item Aprendizaje de características
@@ -148,13 +152,17 @@ Una primera parte teórica del trabajo consiste en un artículo publicado en la 
 \item Extracción de características
 \item Fusión de características
 \end{itemize}
-Además, se detallan las componentes de un autoencoder básico: la estructura neuronal, las funciones de activación, y las características de la arquitectura. La descripción sigue con una taxonomía de los diferentes modelos de autoencoder disponibles, de acuerdo a las propiedades que inducen en las codificaciones aprendidas. A continuación, se analizan los fundamentos y propiedades de las variantes principales: básico, \textit{sparse}, \textit{contractive}, \textit{denoising} y \textit{robust}, y se mencionan otros tipos de autoencoder con aplicaciones específicas, como los modelos generativos.
+Además, se introduce una clase específica de redes neuronales diseñadas para estas tareas, los autoencoders. Se detallan las componentes de un autoencoder básico: la estructura neuronal, las funciones de activación, y las características de la arquitectura. La descripción sigue con una taxonomía de los diferentes modelos de autoencoder disponibles, de acuerdo a las propiedades que inducen en las codificaciones aprendidas. A continuación, se analizan los fundamentos y propiedades de las variantes principales: básico, \textit{sparse}, \textit{contractive}, \textit{denoising} y \textit{robust}, y se mencionan otros tipos de autoencoder con aplicaciones específicas, como los modelos generativos.
 
-Para proporcionar un contexto, se comparan los autoencoders con otras técnicas clásicas de aprendizaje de características, tanto lineales como no lineales, y se presentan los diversos campos de aplicación en los que se usan. Por último, se incluyen unas indicaciones para la hora de diseñar un autoencoder para una tarea concreta y se realiza un caso de uso en el que se comparan las distintas opciones y variantes.
+Para proporcionar un contexto, se comparan los autoencoders con otras técnicas clásicas de aprendizaje de características, tanto lineales como no lineales, y se presentan los diversos campos de aplicación en los que se usan. Por último, se incluyen unas indicaciones para la hora de diseñar un autoencoder para una tarea concreta, mencionando las distintas librerías software que se pueden utilizar como base para los desarrollos, y se realiza un caso de uso en el que se comparan las distintas opciones y variantes.
 
-En una segunda parte, como desarrollo práctico del tema estudiado se ha elaborado un paquete software que implementa los modelos principales de autoencoder, denominado Ruta y publicado en el repositorio CRAN de librerías para el lenguaje R. La funcionalidad del paquete incluye la definición de las estructuras neuronales, la selección del tipo de autoencoder y de la función a optimizar, el entrenamiento con varios parámetros personalizables y su evaluación contra un conjunto de test. En este trabajo se describe el uso y funcionalidad de cada método disponible en el software desarrollado.
+En una segunda parte, como desarrollo práctico del tema estudiado se ha elaborado un paquete software que implementa los modelos principales de autoencoder, denominado Ruta y publicado en el repositorio CRAN de librerías para el lenguaje R. Se trata de una completa librería con 6 variantes del autoencoder, basada en el conocido framework para aprendizaje profundo Keras.
+
+La funcionalidad del paquete incluye la definición de las estructuras neuronales, la selección del tipo de autoencoder y de la función a optimizar, el entrenamiento con varios parámetros personalizables y su evaluación contra un conjunto de test. En este trabajo se describe el uso y funcionalidad de cada método disponible en el software desarrollado.
 
 En la tercera y última parte, este trabajo recoge los resultados obtenidos y presenta las vías de investigación que se plantean para una futura tesis doctoral.
+
+\paragraph{Palabras clave} Aprendizaje automático, Deep Learning, aprendizaje no supervisado, redes neuronales, fusión de características.
 
 \ctparttext{
   \color{black}
